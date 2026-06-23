@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web AI Slop — Detection Skill for AI Coding Assistants</title>
+  <meta name="description"
+    content="An agent skill that catches generic AI-generated patterns — visual clichés, copywriting tropes, code tells, and UX defaults — in any AI coding assistant.">
+  <meta name="keywords"
+    content="AI slop, AI detection, agent skill, AI-generated content, web design patterns, AI code quality, Claude Code, Cursor, Windsurf">
+  <meta name="author" content="Sahil Kargutkar">
+  <link rel="canonical" href="https://sahilkargutkar.github.io/web-ai-slop/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Web AI Slop — Detection Skill for AI Coding Assistants">
+  <meta property="og:description"
+    content="Catch generic AI-generated patterns in design, copy, UX, and code before they ship. An agent skill for any AI coding assistant.">
+  <meta property="og:url" content="https://sahilkargutkar.github.io/web-ai-slop/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Web AI Slop">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Web AI Slop — Detection Skill for AI Coding Assistants">
+  <meta name="twitter:description"
+    content="Catch generic AI-generated patterns in design, copy, UX, and code before they ship. An agent skill for any AI coding assistant.">
+  <meta name="google-site-verification" content="0PP7rsPGy6vRO41ECVnysllXAxF-deLpJnG6QGO2Neo" />
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Web AI Slop",
+  "description": "An agent skill that detects and filters out generic AI-generated design patterns, visual clichés, copywriting tropes, and code tells in AI coding assistants.",
+  "url": "https://sahilkargutkar.github.io/web-ai-slop/",
+  "author": {
+    "@type": "Person",
+    "name": "Sahil Kargutkar"
+  },
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform",
+  "softwareVersion": "1.0.0",
+  "license": "https://github.com/sahilkargutkar/web-ai-slop/blob/main/LICENSE"
+}
+</script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --border: #262626;
+      --border2: #333;
+      --text: #d4d4d4;
+      --text2: #888;
+      --text3: #555;
+      --amber: #f59e0b;
+      --amber-dim: #a16207;
+      --cyan: #06b6d4;
+      --red: #ef4444;
+      --green: #22c55e;
+      --radius: 6px;
+      --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--amber);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: .875em;
+      background: var(--surface2);
+      padding: .15em .4em;
+      border-radius: 3px
+    }
+
+    /* Layout */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .section {
+      padding: 80px 0
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--amber);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .lede {
+      font-size: 1.125rem;
+      color: var(--text2);
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    /* Nav */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 10, 10, .85);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--mono);
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -.02em;
+    }
+
+    .logo span {
+      color: var(--amber)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: .8125rem;
+      color: var(--text2);
+      transition: color .15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none
+    }
+
+    /* Hero */
+    .hero {
+      padding: 120px 0 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .6875rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 4px 10px;
+      border: 1px solid var(--amber-dim);
+      border-radius: 999px;
+      color: var(--amber);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--amber), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .lede {
+      font-size: 1.25rem;
+      margin: 0 auto 40px
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: .8125rem;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: default;
+      transition: border-color .15s, background .15s;
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #000;
+      border-color: var(--amber);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #d97706;
+      border-color: #d97706
+    }
+
+    /* Stats row */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 64px;
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: .8125rem;
+      color: var(--text2)
+    }
+
+    /* Scanner demo */
+    .scanner-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .scanner-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--text2);
+    }
+
+    .scanner-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%
+    }
+
+    .scanner-dot.r {
+      background: #ef4444
+    }
+
+    .scanner-dot.y {
+      background: #f59e0b
+    }
+
+    .scanner-dot.g {
+      background: #22c55e
+    }
+
+    .scanner-body {
+      padding: 24px
+    }
+
+    .scanner-intro {
+      margin-bottom: 20px;
+      font-size: .9375rem;
+      color: var(--text2)
+    }
+
+    .tell-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 24px
+    }
+
+    .tell-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--surface2);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background .15s;
+      font-size: .875rem;
+      user-select: none;
+    }
+
+    .tell-item:hover {
+      background: var(--border)
+    }
+
+    .tell-item.active {
+      background: rgba(245, 158, 11, .08);
+      border: 1px solid var(--amber-dim);
+      padding: 9px 13px
+    }
+
+    .tell-item input[type=checkbox] {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--text3);
+      border-radius: 3px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: border-color .15s, background .15s;
+    }
+
+    .tell-item input[type=checkbox]:checked {
+      border-color: var(--amber);
+      background: var(--amber);
+    }
+
+    .tell-item input[type=checkbox]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4.5px;
+      top: 1.5px;
+      width: 4px;
+      height: 8px;
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .tell-cat {
+      font-size: .6875rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text3);
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .score-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--surface2);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .score-num {
+      font-family: var(--mono);
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+
+    .score-num.low {
+      color: var(--green)
+    }
+
+    .score-num.med {
+      color: var(--amber)
+    }
+
+    .score-num.high {
+      color: var(--red)
+    }
+
+    .score-label {
+      font-size: .875rem;
+      color: var(--text2)
+    }
+
+    .score-verdict {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: .8125rem;
+      padding: 4px 10px;
+      border-radius: 999px
+    }
+
+    /* Tells grid */
+    .tells-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .tell-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      cursor: default;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .tell-card:hover {
+      border-color: var(--border2)
+    }
+
+    .tell-card-num {
+      font-family: var(--mono);
+      font-size: .6875rem;
+      color: var(--text3);
+      margin-bottom: 8px;
+    }
+
+    .tell-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .tell-card-desc {
+      font-size: .8125rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .tell-card-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .625rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background: var(--surface2);
+      color: var(--text3);
+      margin-top: 12px;
+    }
+
+    /* Compare */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .compare-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .compare-box-header {
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: .6875rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-box-header.slop {
+      background: rgba(239, 68, 68, .06);
+      color: var(--red)
+    }
+
+    .compare-box-header.intentional {
+      background: rgba(34, 197, 94, .06);
+      color: var(--green)
+    }
+
+    .compare-box-body {
+      padding: 16px;
+      font-size: .8125rem;
+      color: var(--text2);
+      line-height: 1.65
+    }
+
+    .compare-box-body ul {
+      list-style: none;
+      padding: 0
+    }
+
+    .compare-box-body li {
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative
+    }
+
+    .compare-box-body li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 1px
+    }
+
+    .compare-box-body .slop-li::before {
+      background: var(--red)
+    }
+
+    .compare-box-body .intentional-li::before {
+      background: var(--green)
+    }
+
+    /* Workflow */
+    .workflow {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      position: relative
+    }
+
+    .workflow-step {
+      flex: 1;
+      text-align: center;
+      padding: 20px 16px;
+      position: relative;
+    }
+
+    .workflow-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      font-family: var(--mono);
+      font-size: .8125rem;
+      font-weight: 600;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text2);
+    }
+
+    .workflow-step.active .workflow-num {
+      background: var(--amber);
+      color: #000;
+      border-color: var(--amber);
+    }
+
+    .workflow-step.flag .workflow-num {
+      background: rgba(239, 68, 68, .15);
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .workflow-label {
+      font-size: .8125rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .workflow-desc {
+      font-size: .75rem;
+      color: var(--text2);
+      max-width: 160px;
+      margin: 0 auto;
+    }
+
+    .workflow-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--text3);
+      font-size: 1.25rem;
+      padding-top: 28px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      text-align: center;
+      color: var(--text3);
+      font-size: .8125rem;
+    }
+
+    footer a {
+      color: var(--text2)
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .7);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open {
+      display: flex
+    }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 520px;
+      width: 90%;
+      padding: 28px;
+      position: relative;
+    }
+
+    .modal h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px
+    }
+
+    .modal p {
+      font-size: .875rem;
+      color: var(--text2);
+      margin-bottom: 16px;
+      line-height: 1.6
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--text3);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 3px;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+      background: var(--surface2)
+    }
+
+    /* Responsive */
+    @media(max-width:768px) {
+      .hero h1 {
+        font-size: 2.25rem
+      }
+
+      .hero {
+        padding: 80px 0 48px
+      }
+
+      .section {
+        padding: 48px 0
+      }
+
+      .stats {
+        grid-template-columns: 1fr
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr
+      }
+
+      .workflow {
+        flex-direction: column;
+        align-items: center
+      }
+
+      .workflow-arrow {
+        transform: rotate(90deg);
+        padding: 0
+      }
+
+      .tells-grid {
+        grid-template-columns: 1fr
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .score-box {
+        flex-wrap: wrap
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="logo">web-ai-<span>slop</span></div>
+      <ul class="nav-links">
+        <li><a href="#scanner">Scanner</a></li>
+        <li><a href="#tells">Top 10 Tells</a></li>
+        <li><a href="#compare">Compare</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="https://github.com/sahilkargutkar/web-ai-slop" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">v1.0.0 &middot; Agent Skill</div>
+      <h1>Detect &amp; Eliminate<br>AI-Generated <span>Slop</span></h1>
+      <p class="lede">An agent skill that catches generic AI patterns — visual clichés, copywriting tropes, code tells,
+        and UX defaults — before they ship. Integrates into any AI coding assistant.</p>
+      <div class="hero-actions">
+        <span class="btn btn-primary">npx skills add sahilkargutkar/web-ai-slop</span>
+        <span class="btn">Read the docs &rarr;</span>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">14</div>
+          <div class="stat-label">Disciplines Checked</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Patterns Flagged</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Hits = Discard &amp; Rebuild</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="scanner">
+    <div class="container">
+      <div class="section-label">Interactive Demo</div>
+      <h2>Slop Scanner</h2>
+      <p class="lede">Check which of these telltale patterns you&rsquo;ve seen on a site. If any category hits
+        <strong>2+ items</strong>, the skill flags it as slop.</p>
+
+      <div class="scanner-box">
+        <div class="scanner-header">
+          <span class="scanner-dot r"></span>
+          <span class="scanner-dot y"></span>
+          <span class="scanner-dot g"></span>
+          scan: slop-detector.js
+        </div>
+        <div class="scanner-body">
+          <p class="scanner-intro">Common AI slop patterns &mdash; check the ones you&rsquo;ve spotted:</p>
+          <div class="tell-list" id="tell-list"></div>
+          <div class="score-box">
+            <div class="score-num low" id="score-num">0</div>
+            <div>
+              <div class="score-label">patterns detected</div>
+              <div class="score-label" style="font-size:.75rem;color:var(--text3)" id="max-cat-label">max 0 in any
+                category</div>
+            </div>
+            <div class="score-verdict" id="score-verdict" style="background:rgba(34,197,55,.08);color:var(--green)">
+              CLEAN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tells">
+    <div class="container">
+      <div class="section-label">Pattern Reference</div>
+      <h2>Top 10 Highest-Confidence Tells</h2>
+      <p class="lede">Any <strong>3 of these together</strong> almost certainly means a site was AI-generated without
+        human review.</p>
+      <div class="tells-grid" id="tells-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="compare">
+    <div class="container">
+      <div class="section-label">Side-by-Side</div>
+      <h2>Slop vs. Intentional Design</h2>
+      <p class="lede">The skill doesn&rsquo;t just flag problems &mdash; it helps rebuild with specific, contextual
+        decisions.</p>
+      <div class="compare-grid">
+        <div class="compare-box">
+          <div class="compare-box-header slop">AI Slop (Default Output)</div>
+          <div class="compare-box-body">
+            <ul>
+              <li class="slop-li">Purple aurora gradient blob behind hero</li>
+              <li class="slop-li">Bento grid of rounded-square icon cards</li>
+              <li class="slop-li">"Unlock your [noun]" headline with rule-of-3 adjectives</li>
+              <li class="slop-li">Circular-avatar testimonials, no specific outcomes</li>
+              <li class="slop-li">3-tier pricing with "Most Popular" highlighted</li>
+              <li class="slop-li"><code>transition: all 0.3s ease</code> on everything</li>
+              <li class="slop-li">Inter 400/600/700, default letter-spacing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="compare-box">
+          <div class="compare-box-header intentional">Intentional Design</div>
+          <div class="compare-box-body">
+            <ul>
+              <li class="intentional-li">No decorative gradient — content leads</li>
+              <li class="intentional-li">List layout or single focused CTA</li>
+              <li class="intentional-li">Specific headline: "Saves 14h/week on invoice reconciliation"</li>
+              <li class="intentional-li">Customer quotes with measurable before/after</li>
+              <li class="intentional-li">Single plan or usage-based, no fake tiers</li>
+              <li class="intentional-li"><code>transition: opacity 0.2s</code> on hover states only</li>
+              <li class="intentional-li">Chosen typeface with tightened tracking on headings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="section-label">Integration</div>
+      <h2>How the Skill Works</h2>
+      <p class="lede">The skill operates silently inside your AI coding assistant, following a <strong>draft &rarr;
+          check &rarr; discard &rarr; rebuild</strong> cycle.</p>
+      <div class="workflow">
+        <div class="workflow-step active">
+          <div class="workflow-num">1</div>
+          <div class="workflow-label">Draft</div>
+          <div class="workflow-desc">Generate output freely, no self-censoring</div>
+        </div>
+        <div class="workflow-arrow">&rarr;</div>
+        <div class="workflow-step">
+          <div class="workflow-num">2</div>
+          <div class="workflow-label">Check</div>
+          <div class="workflow-desc">Scan against 14 discipline checklists</div>
+        </div>
+        <div class="workflow-arrow">&rarr;</div>
+        <div class="workflow-step flag">
+          <div class="workflow-num">!</div>
+          <div class="workflow-label">Flag</div>
+          <div class="workflow-desc">2+ hits in any category = slop detected</div>
+        </div>
+        <div class="workflow-arrow">&rarr;</div>
+        <div class="workflow-step">
+          <div class="workflow-num">3</div>
+          <div class="workflow-label">Rebuild</div>
+          <div class="workflow-desc">Discard draft, make specific intentional choices</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>MIT License &middot; <a href="https://github.com/sahilkargutkar/web-ai-slop"
+          target="_blank">github/sahilkargutkar/web-ai-slop</a></p>
+      <p style="margin-top:8px">Built to make AI output intentional, not average.</p>
+    </div>
+  </footer>
+
+  <script>
+    const tells = [
+      { id: 'v1', cat: 'Visual', label: 'Purple aurora gradient blob behind hero' },
+      { id: 'v2', cat: 'Visual', label: 'Bento grid of rounded-square icon cards' },
+      { id: 'v3', cat: 'Visual', label: 'Circular-avatar testimonials with no specific outcome' },
+      { id: 'v4', cat: 'Color', label: 'Inter font 400/600/700 with default letter-spacing' },
+      { id: 'v5', cat: 'Copy', label: '"Unlock your [noun]" headline pattern' },
+      { id: 'v6', cat: 'Copy', label: 'Rule-of-three adjective stacks' },
+      { id: 'v7', cat: 'UX', label: '3-tier pricing with "Most Popular" highlighted' },
+      { id: 'v8', cat: 'UX', label: '"How It Works" with exactly 3 steps' },
+      { id: 'v9', cat: 'Code', label: 'transition: all 0.3s ease on everything' },
+      { id: 'v10', cat: 'Code', label: 'No alt text, no lang on &lt;html&gt;, default &lt;title&gt;' },
+      { id: 'v11', cat: 'Visual', label: 'Particle network / canvas animation background' },
+      { id: 'v12', cat: 'UX', label: 'Hero &rarr; Logos &rarr; Features &rarr; Pricing &rarr; FAQ sequence' },
+      { id: 'v13', cat: 'Copy', label: 'Em-dash doublespeak — "the intelligent — and beautiful — solution"' },
+      { id: 'v14', cat: 'Code', label: 'Next.js + Tailwind + Shadcn default stack' },
+      { id: 'v15', cat: 'Copy', label: 'Gerund list: "Streamlining. Simplifying. Revolutionizing."' },
+    ];
+
+    const topTells = [
+      { num: 1, title: 'Purple aurora gradient blob behind hero', desc: 'The single strongest visual tell. A large, blurred gradient shape (almost always purple/indigo) floating behind a centered headline.', tag: 'Visual' },
+      { num: 2, title: 'Bento grid of rounded-square icon cards', desc: 'A grid of cards with rounded corners, each containing a simple icon and 2-3 words. Looks like every other AI-generated SaaS page.', tag: 'Visual' },
+      { num: 3, title: '"Unlock your [noun]" headlines', desc: 'Headlines that follow the exact template "Unlock your [potential|productivity|growth|success]". Generic by construction.', tag: 'Copy' },
+      { num: 4, title: 'Rule-of-three adjective stacks', desc: 'Three adjectives in a row before a noun: "Powerful. Intuitive. Seamless." or "Modern, scalable, secure." Trivially swappable.', tag: 'Copy' },
+      { num: 5, title: 'Circular-avatar testimonials with no specific outcome', desc: 'Round photos, glowing quote, person\'s name, "CEO of X". Never any concrete numbers or before/after.', tag: 'Visual' },
+      { num: 6, title: '3-tier pricing with "Most Popular" highlighted', desc: 'The Starter/Pro/Enterprise model with one plan called out as "Most Popular" or "Recommended."', tag: 'UX' },
+      { num: 7, title: 'transition: all 0.3s ease on everything', desc: 'The universal CSS transition. Indicates no thought was given to what should animate or how.', tag: 'Code' },
+      { num: 8, title: 'Inter at 400/600/700 with default letter-spacing', desc: 'Inter is the default LLM font choice. Using it at default weights and tracking signals no typographic intention.', tag: 'Color' },
+      { num: 9, title: '"How It Works" with exactly 3 steps', desc: 'Step 1: Sign up. Step 2: Do the thing. Step 3: Get result. Three steps, always — no variation.', tag: 'UX' },
+      { num: 10, title: 'Missing alt text, no lang, framework-default &lt;title&gt;', desc: 'The HTML equivalent of not checking your work. Shows up when the AI generates markup without review.', tag: 'Code' },
+    ];
+
+    function renderTells() {
+      const list = document.getElementById('tell-list');
+      list.innerHTML = tells.map(t => `
+    <label class="tell-item" data-cat="${t.cat}">
+      <input type="checkbox" data-id="${t.id}" data-cat="${t.cat}" />
+      <span>${t.label}</span>
+      <span class="tell-cat">${t.cat}</span>
+    </label>
+  `).join('');
+
+      document.querySelectorAll('.tell-item input').forEach(cb => {
+        cb.addEventListener('change', updateScore);
+      });
+    }
+
+    function updateScore() {
+      const checked = document.querySelectorAll('.tell-item input:checked');
+      const total = checked.length;
+      const num = document.getElementById('score-num');
+      const verdict = document.getElementById('score-verdict');
+      const catLabel = document.getElementById('max-cat-label');
+
+      const catCounts = {};
+      checked.forEach(cb => {
+        const c = cb.dataset.cat;
+        catCounts[c] = (catCounts[c] || 0) + 1;
+      });
+      let maxCat = 0, maxCatName = '';
+      for (const [c, n] of Object.entries(catCounts)) {
+        if (n > maxCat) { maxCat = n; maxCatName = c; }
+      }
+      catLabel.textContent = maxCat >= 2 ? `max ${maxCat} in ${maxCatName} — FLAGGED` : `max ${maxCat} in any category`;
+
+      num.textContent = total;
+      num.className = 'score-num ' + (maxCat >= 2 ? 'high' : total >= 5 ? 'med' : 'low');
+
+      if (maxCat >= 2) {
+        verdict.textContent = 'SLOP DETECTED';
+        verdict.style.background = 'rgba(239,68,68,.1)';
+        verdict.style.color = 'var(--red)';
+      } else {
+        verdict.textContent = 'CLEAN';
+        verdict.style.background = 'rgba(34,197,55,.08)';
+        verdict.style.color = 'var(--green)';
+      }
+
+      document.querySelectorAll('.tell-item').forEach(el => {
+        el.classList.toggle('active', el.querySelector('input').checked);
+      });
+    }
+
+    function renderTopTells() {
+      const grid = document.getElementById('tells-grid');
+      grid.innerHTML = topTells.map(t => `
+    <div class="tell-card">
+      <div class="tell-card-num">Tell #${t.num} of 10</div>
+      <div class="tell-card-title">${t.title}</div>
+      <div class="tell-card-desc">${t.desc}</div>
+      <span class="tell-card-tag">${t.tag}</span>
+    </div>
+  `).join('');
+    }
+
+    renderTells();
+    renderTopTells();
+    updateScore();
+  </script>
+</body>
+
+</html>
