@@ -25,6 +25,8 @@ These are the patterns a designer with 40 years of craft knowledge would immedia
 - **Section → divider → section → divider rhythm with no variation** — every page breathes the same. Real page rhythm varies: compressed detail sections, open breathing sections, dense data sections.
 - **Sticky navigation that appears on every page** regardless of whether the page is a one-scroll landing page, a long-form article, or an app view where navigation competes with content.
 - **Footer with 4–5 column link columns** containing links that nobody using this specific product would realistically navigate to.
+- **Icons for features that don't require icons** — AI models love to put a Lucide or Heroicon next to every feature, even when it doesn't add clarity.DOnt use emoji's for icons in any page , dont use emojis at all in the website, instead use actual icons.You can ask which icons user prefer, and based on user input select them.dont use the default icon themes of shadcn ui, make your own or use a library of icons that user prefers.
+
 
 ### 1b. Decorative motifs
 
@@ -170,6 +172,7 @@ These are the patterns that a 40-year UX researcher or information architect wou
 - **Heading levels skipped** — jumping from `<h1>` to `<h3>` because the `<h3>` style looked right, breaking document structure for screen readers.
 - **No `skip to main content` link** for keyboard users who would otherwise have to tab through an entire navigation on every page.
 - **Animations with no `prefers-reduced-motion` media query** — users with vestibular disorders, epilepsy, or motion sensitivity cannot opt out.
+- **Tailwind css** - dont use tracking in any className with tracking-wider or tracking-tight etc. Do not use uppercase letters in any text.Use only when user specifies so.
 
 **Instead:** Ask what the one thing this specific page needs the visitor to do or believe, and structure every element around that. Remove anything that does not contribute. Real IA is subtraction.
 
@@ -222,8 +225,13 @@ These are the patterns that a 40-year front-end engineer would call out in a cod
 - **No `font-display: swap`** on web fonts — invisible text during font load (FOIT) instead of a flash of system text (FOUT).
 - **Render-blocking CSS** loaded via `<link rel="stylesheet">` for styles that are not used above the fold.
 - **Web fonts loaded for weights and styles never used** — loading all 18 weights of a variable font "just in case."
+- **Testing** - dont add scratch js, ts, or any other files in the code. Make sure the code is clean and well-organized.if added to check files, remove them.
+
 
 **Instead:** Before writing a component or page, name the semantic elements that belong in it, the data flow, the error states, and the loading state. If you cannot name those, the component is not ready to be built.
+
+
+
 
 ---
 
@@ -337,3 +345,41 @@ If the user says "this still looks AI-generated," "this is generic slop," "this 
 **Do:** Name the specific item from the checklist above that you defaulted to. State it explicitly: "I defaulted to [pattern]. The replacement decision is [specific, justified alternative]." Then rebuild from that replacement decision, not from the previous draft with surface changes applied.
 
 The difference between a 40-year practitioner and a model generating defaults is not technique — it is the willingness to throw away a draft that has no specific reason to exist.
+
+---
+
+## Section 11 — Source Code / "View Source" Tells
+
+Right-click → View Page Source (Ctrl+U on Windows, Cmd+Option+U on Mac) to see the raw HTML. Look for:
+
+- **AI-authored comments left in.** Some developers leave comments in the code explicitly marking sections as AI-generated — rare, but an instant confirmation when present.
+- **Over-engineered structure for trivial functionality.** A vibe-coded script that does something simple may still include a full repository pattern, abstract base classes, dependency injection, and factory methods — all for ten lines of actual logic. Human developers calibrate complexity to the size of the problem.
+- **Inconsistent patterns across the same site.** Authentication might use one pattern in one module and a completely different pattern in another, with no coherent reason — a sign of separate prompts/sessions making independent decisions with no unifying architecture.
+- **Bloated dependency list.** A vibe-coded project may pull in 80+ dependencies for a simple web app — each one a library the model reached for reflexively rather than using a stdlib equivalent.
+- **Builder/tool fingerprints in the JS bundle.** Even when a site is on a custom domain with builder branding removed, scanning the JavaScript bundle can reveal Lovable artifact strings, v0 component patterns, or Bolt runtime identifiers that survive de-branding.
+- **The "default AI stack."** Next.js + Tailwind CSS + Shadcn UI + Lucide Icons + Radix UI is the component stack AI coding tools reach for by default — not proof on its own (plenty of humans choose this stack deliberately), but raises the prior when combined with other signals.
+- **Meta tag oddities.** Strange spellings or generic phrasing in meta tags can indicate an AI tool generated them, even if the visible page content was human-written.
+
+---
+
+## Section 12 — Technical / Performance Tells
+
+- **Slower-than-expected load times.** AI-generated code is often heavier than necessary, which drags down Core Web Vitals scores — check via Chrome DevTools → Lighthouse, or PageSpeed Insights.
+- **Accessibility gaps.** Missing alt text, unlabeled buttons, and poor keyboard navigation support are common when no human reviewed the output.
+- **Missing SEO/AEO basics.** No meta descriptions, no Open Graph images, duplicate page titles, no structured data, and a thin or skipped heading hierarchy all suggest a site that shipped without an SEO pass.
+- **No real backend signal.** A site with form fields that don't actually submit anywhere, or a "Sign up" flow that goes nowhere — common when a UI was generated without a working backend behind it yet.
+
+---
+
+## Section 13 — Strategic / Business-Context Tells (The Deepest Signal, Hardest to Fake)
+
+This is the layer pure code-scanning tools can't see, and arguably the most reliable:
+
+- **No clear job the site is doing.** The site looks like a website but isn't built to do anything specific — book calls, generate leads, qualify prospects — it's just present.
+- **No conversion thinking.** Page structure, user journey, and calls to action feel like an afterthought rather than a designed path.
+- **Positioning vacuum.** The site never clearly states who it's for or why someone should pick it over alternatives — because the model was never given that strategic context to begin with, only a feature list to describe.
+
+
+## Section 14 - Deploying code / Upoading to Git 
+
+- **Dont commit**- Dont use git init or git add or git commit . Also dont add any scratch files to the repo. Make sure the code is clean and well-organized.Let the user do this.  
