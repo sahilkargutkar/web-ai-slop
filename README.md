@@ -38,9 +38,15 @@ Before your AI agent generates a layout, designs a component, or drafts copy, it
 
 ---
 
+## Detection Guide
+
+Need to audit whether an existing site was AI-generated? See **[docs/detecting-ai-slop.md](docs/detecting-ai-slop.md)** — a comprehensive checklist for designers, developers, UX researchers, and DevOps engineers to identify AI-generated web output by visual, copy, code, and infrastructure tells. Includes a scoring system and a "Top 10 highest-confidence tells" quick reference.
+
+---
+
 ## Contributing
 
-If you find a new pattern that AI models constantly default to when generating web applications, feel free to open a Pull Request updating `SKILL.md`.
+If you find a new pattern that AI models constantly default to when generating web applications, open a Pull Request updating `skills/web-ai-slop/SKILL.md` or adding a new pattern to `docs/detecting-ai-slop.md`.
 
 ## License
 
