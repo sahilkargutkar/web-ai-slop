@@ -46,7 +46,27 @@ These are the patterns a designer with 40 years of craft knowledge would immedia
 - **Testimonial carousel with stock-photo circular avatar, first name + last initial, and a generic one-line quote** that contains no specific number, outcome, or named feature.
 - **Pricing section always 3 tiers, always with the middle one highlighted** by a colored border and the label "Most Popular," regardless of whether that framing serves this product.
 
+
+### 1d. Quick-scan signal table
+
+Open the site and look at it for 10 seconds before doing anything technical. These are the signals visible without inspecting code.
+
+| Signal | What to look for |
+|---|---|
+| **The purple/blue gradient** | Many AI tools default to the same blue-to-purple gradient — once you've seen it, you can't unsee it. Usually a radial blur behind the hero. |
+| **Glassmorphism everywhere** | Frosted-glass cards with white borders, used as the default "premium" treatment regardless of brand. |
+| **Particle networks / neural-net visuals** | Floating dots with connecting lines as generic shorthand for "AI" or "data," with no specific referent to what the product does. |
+| **Bento grid of icon cards** | 3 or 6 rounded-square cards, each with a Lucide/Heroicon and 2–3 lines of generic benefit copy. |
+| **Inconsistent spacing** | Margins and padding vary between sections, so the page rhythm feels uneven — consistent spacing is one of the clearest signs of considered design, and its absence is a tell. |
+| **Weak typographic hierarchy** | Default fonts, awkward line lengths, inconsistent heading sizes, and cramped line spacing all point to type that was never properly set. |
+| **Poor contrast** | Light grey text on white, or weak text/background contrast — WCAG sets a 4.5:1 minimum contrast ratio for normal text, and many AI-default palettes don't clear it. |
+| **Identical card hover effects everywhere** | Every card lifts or glows the same way on hover, applied uniformly rather than where it adds real affordance. |
+| **Excessive sparkle/AI emoji** | ✨ used liberally in headlines and buttons as a visual signal for "AI-powered," now itself a tell. |
+
+**Quick test:** Resize the browser narrower, or open on a phone. AI-generated layouts often break, overlap, or overflow at screen sizes the model was never specifically prompted to handle — real responsive QA across breakpoints is one of the first things skipped.
+
 **Instead:** Pick ONE real visual device — a specific illustration, a diagram of the actual product's data flow, a screenshot of the real interface — render it with restraint, and give it room. A company that ships serious product puts one precise idea per screen, not a collage of AI-default textures.
+
 
 ---
 
