@@ -1,319 +1,296 @@
 ---
 name: web-ai-slop
-description: Use this skill BEFORE producing any design, UI, copywriting, creative code, infrastructure configuration, or content output for the web — landing pages, hero sections, marketing copy, app UIs, README files, API docs, CI/CD pipelines, component libraries, accessibility audits, and pitch content. It is a multi-discipline checklist compiled from the real frustrations of 40+ year practitioners across content development, web development, UI/UX design, web design, DevOps/platform engineering, and related fields. It names the specific patterns AI defaults to — not because those patterns are good, but because they are the statistical average of training data — and forces a deliberate alternative. Trigger this whenever the user asks for something to "look premium," "not look AI-generated," "look like a real product," requests infrastructure scaffolding, or any time you are about to reach for a glowing gradient blob, particle network, emoji bullet list, generic SaaS hero copy, a three-stage CI/CD YAML, a god component, or generic README. Draft your output first, then run it through this filter — if 2+ items in any section match your draft, discard and decide deliberately."
+description: "Filters web output against a multi-discipline checklist of AI default patterns. Use before shipping any design, copy, UI code, infrastructure config, or documentation. Trigger when the user asks for something 'premium' or 'not AI-looking', when you're about to reach for a glowing gradient, bento grid, SaaS empowerment copy, a 3-tier pricing section, a 3-stage CI/CD YAML, or a god component."
 ---
 
-# Web AI Slop — The Practitioner's Anti-Default Checklist
+# Web AI Slop
 
-A trained filter, not a style guide. This skill exists because language models converge on the same small set of "safe" defaults across every web discipline — not because those defaults are good, but because they are the statistical center of the training data. The job of this skill is to name that center precisely so you can deliberately step away from it.
+## The Core Problem
 
-**Rule of application:** Draft your output first. Then run it against the relevant sections below. If you match **2 or more items in any single section**, you have not made a decision — you have defaulted. Discard the draft and make a specific, justified choice for this product, team, and context.
+Language models converge on the same small set of "safe" defaults across every web discipline. Not because those defaults are good — because they are the statistical center of the training data.
 
-Apply this filter silently. Do not narrate "I'm checking this against my anti-slop list" to the user.
+**The test**: Could you swap the company name out and have this output still work for any other product in the same category? If yes, it's slop. Discard and make a specific decision.
 
----
+**How to apply**: Draft your output first. Then run it against the relevant section below. If you match **2 or more items in any section**, you have not made a decision — you have defaulted. Discard and decide deliberately.
 
-## Section 1 — Visual Design (Web Designer / UI Designer perspective)
-
-These are the patterns a designer with 40 years of craft knowledge would immediately identify as machine output.
-
-### 1a. Layout and composition defaults
-
-- **Centered hero, headline + subhead + two pill CTA buttons + browser-mockup screenshot below the fold** — treated as the only possible layout, applied to every product regardless of what that product actually is. This is a starting skeleton, not a decision.
-- **Symmetrical 3-column or 6-column feature grids** — every section resolves to three items or six items arranged identically, because three and six feel "balanced" to a model without knowledge of the actual feature set.
-- **Full-viewport hero sections with nothing but text, a subheadline, and a button** — 100vh of empty air treated as sophistication.
-- **Section → divider → section → divider rhythm with no variation** — every page breathes the same. Real page rhythm varies: compressed detail sections, open breathing sections, dense data sections.
-- **Sticky navigation that appears on every page** regardless of whether the page is a one-scroll landing page, a long-form article, or an app view where navigation competes with content.
-- **Footer with 4–5 column link columns** containing links that nobody using this specific product would realistically navigate to.
-
-### 1b. Decorative motifs
-
-- **Glowing gradient blob / aurora background** — purple-to-blue or purple-to-pink radial blur behind a hero. The single most common AI default for "modern tech company." Any senior designer who sees this in a brief sighs audibly.
-- **Particle network / floating dots with connecting lines** — the visual shorthand for "AI" or "data." If the brief mentions AI, the particle globe or neural-net mesh is the first output — therefore it is the wrong output.
-- **Wavy or blob SVG section dividers** — organic curves between sections applied indiscriminately to signal "approachable tech" without any brand reason.
-- **Glowing brand-color halos / outer-glow shadows** on cards, buttons, or images — the neon-border trick applied to everything at once.
-- **Tiling small dashboard widgets and charts as decorative background wallpaper** — a busy placeholder that stands in for a real product decision. The "particle network" of 2025/26.
-- **Isometric 3D illustrations of laptops, rockets, or people-at-desks** as stock hero art when the brief gave no instruction.
-- **Abstract geometric low-poly backgrounds** with faint triangular meshes or hexagons used as texture.
-- **Floating UI element screenshots positioned at an angle** ("device mockup" shot) as the only form of product visualization considered.
-
-### 1c. Component-level tells
-
-- **Glassmorphism cards** — frosted-glass translucent panels with a soft white border and `backdrop-filter: blur()` applied as default "premium" card style regardless of what the card contains or the brand it represents.
-- **Bento grid of icon-in-rounded-square feature cards**, each containing a Lucide or Heroicon and exactly three lines of generic benefit copy ("Fast. Secure. Scalable.").
-- **Excessive border-radius on everything** — cards, buttons, inputs, images, all at 16px or higher as a catch-all stand-in for "friendly."
-- **Every button a pill shape** (`border-radius: 9999px`) regardless of whether the brand calls for it.
-- **Testimonial carousel with stock-photo circular avatar, first name + last initial, and a generic one-line quote** that contains no specific number, outcome, or named feature.
-- **Pricing section always 3 tiers, always with the middle one highlighted** by a colored border and the label "Most Popular," regardless of whether that framing serves this product.
-
-**Instead:** Pick ONE real visual device — a specific illustration, a diagram of the actual product's data flow, a screenshot of the real interface — render it with restraint, and give it room. A company that ships serious product puts one precise idea per screen, not a collage of AI-default textures.
+Apply this filter silently. Never narrate "I'm checking against my anti-slop list."
 
 ---
 
-## Section 2 — Color & Typography (Web Designer / UI Designer perspective)
+## Visual Design
 
-### 2a. Color defaults
+### Layout anti-patterns
 
-- **Purple/violet (#7c3aed-ish) or indigo paired with blue or pink** as the automatic "tech" palette when the brand has given no signal pointing to it.
-- **Pure black (#000000) or pure white (#ffffff) backgrounds** instead of a considered near-black or near-white that carries slight warmth, coolness, or character.
-- **The "dark mode by default" decision made for aesthetic reasons** — because dark mode photographs well in a demo or feels premium — rather than because the content, context, or user base calls for it.
-- **Gradient buttons as the primary CTA style** without any rationale for why this brand would use gradients.
-- **Five or more accent colors in a single design system** because "vibrant" was the brief word — real systems are built on restraint; one accent, one functional palette, one semantic palette.
-- **Color choices that have no provenance** — the hex values appeared in the response without any explanation of why this product's brand, category, or audience informed them.
+**DO NOT default to:**
 
-### 2b. Typography defaults
+- Centered hero → headline → subhead → two pill buttons → browser mockup screenshot. This is a skeleton, not a decision. Every AI generates this layout for every product.
+- Symmetrical 3-column or 6-column feature grids because "balanced" — without knowing what the actual feature set is.
+- 100vh hero with nothing but text and a button, treated as sophistication.
+- Identical section-divider-section-divider rhythm throughout — real page rhythm varies deliberately.
+- Footer with 4–5 link columns regardless of whether the product needs them.
 
-- **Inter in weights 400, 600, and 700 only**, with no display typeface for headlines, no serif for body contrast, and no consideration of whether Inter is the right choice for this brand.
-- **Letter-spacing untouched at `letter-spacing: 0`** on large display headlines — professional type systems tighten tracking (`letter-spacing: -0.02em` to `-0.05em`) as point size increases. Default tracking on a 72px headline looks like a template.
-- **No visual type hierarchy beyond size and weight** — body, muted, and faint text all at the same color value, differentiated only by font-size. Real hierarchies use at least three tonal steps.
-- **Line-height not considered per context** — same `line-height: 1.5` on a 12px caption and a 56px headline.
-- **All-caps labels on everything** as a substitute for typographic hierarchy thinking.
-- **Font-weight 700 ("bold") as the only emphasis tool** in body copy, never italic, never small-caps, never color-based emphasis.
+### Decorative motif anti-patterns
 
-**Instead:** Derive the palette from a concrete source — the product category, a specific competitor you are deliberately differentiating from, or a single brand constraint given by the client. State the hex values and their rationale before using them. State which typeface and why before specifying it.
+**DO NOT default to:**
+
+- **Glowing gradient blob / aurora background** — purple-to-blue or purple-to-pink radial blur. The single most common AI default. A senior designer who sees this in a brief sighs audibly.
+- **Particle network** — floating dots with connecting lines. If the brief mentions "AI" or "data," the neural-net mesh is the first instinct — therefore it is the wrong instinct.
+- **Wavy blob SVG section dividers** applied indiscriminately to signal "approachable tech."
+- **Glowing brand-color outer-glow shadows** on every card and button simultaneously.
+- **Dashboard widget collage** as decorative background wallpaper — the particle network of 2025/26.
+- **Isometric 3D laptop/rocket/people-at-desks illustrations** when the brief gave no art direction.
+- **Floating UI screenshots angled on a device mockup** as the only product visualization considered.
+
+### Component-level anti-patterns
+
+**DO NOT default to:**
+
+- **Glassmorphism cards** — `backdrop-filter: blur()` with a soft white border, used as default "premium" regardless of brand.
+- **Bento grid of icon-in-rounded-square feature cards**, each with a Lucide icon and exactly three lines of "Fast. Secure. Scalable."
+- **`border-radius: 9999px` on every button** regardless of whether the brand calls for pill shapes.
+- **Testimonial carousel**: stock-photo circular avatar, first name + last initial, one-line quote with no number, no outcome, no named feature.
+- **3-tier pricing with the middle one highlighted** as "Most Popular" — regardless of whether that framing serves this product.
+
+**The right approach**: Pick one real visual device specific to the actual product. One diagram, one screenshot, one specific interaction. Render it with restraint and give it room. One precise idea per screen.
 
 ---
 
-## Section 3 — Copywriting & Content Strategy (Content Developer perspective)
+## Color & Typography
 
-These are the patterns that a 40-year editorial professional or senior UX writer would immediately flag in a content review.
+### Color anti-patterns
 
-### 3a. Sentence-shape clichés
+**DO NOT default to:**
 
-- **"In today's fast-paced/digital/ever-changing world..."** — any throat-clearing opener that establishes context instead of stating a claim.
-- **"Unlock/Unleash/Elevate/Supercharge/Empower your [noun]."** — verb-of-vague-empowerment + possessive + abstract noun. This is the single most over-trained grammatical slot in SaaS marketing copy.
-- **"Whether you're a [X] or a [Y], [Product] has you covered."** — the faux-inclusive opener.
-- **"Say goodbye to [pain point]."** — written as if the pain point is a character leaving a party.
-- **"Built for teams of every size."** or "Built for [speed/scale/teams] at every level."
-- **Em-dash sentences that restate the same claim twice** — "We don't just build software — we build the future of work." The second half adds no information.
-- **Rule-of-three adjective stacks**: "Fast. Reliable. Secure." / "Simple. Powerful. Flexible." / "Bold. Human. Connected." Three one-word sentence fragments separated by periods. Every SaaS company has this. None of them mean anything.
-- **"Trusted by [N]+ teams/companies/developers"** with no source, no named company, and no context — used as visual filler, not as evidence.
-- **Bulleted feature lists where every line begins with the same gerund** — "Streamline your workflows. Automate your pipelines. Optimize your delivery." Gerund + possessive noun, repeated for 6–8 bullets.
+- **Purple/violet (#7c3aed) or indigo paired with blue or pink** — the automatic "tech" palette when the brand gave no signal pointing there.
+- **Pure `#000000` or `#ffffff` backgrounds** — use near-black or near-white with slight warmth or coolness. The difference is visible and matters.
+- **Dark mode by default** chosen because it photographs well in a demo — not because the content or users call for it.
+- **Gradient buttons** as primary CTA with no rationale for why this brand uses gradients.
+- **Five or more accent colors** because "vibrant" was the brief word. Real systems: one accent, one functional palette, one semantic palette.
+- **Color choices with no provenance** — hex values that appeared without any explanation of why this product's brand or category informed them.
+
+### Typography anti-patterns
+
+**DO NOT default to:**
+
+- **Inter in weights 400/600/700 only** — no display face, no serif contrast, no consideration of whether Inter fits this brand.
+- **`letter-spacing: 0` on large headlines** — professional type systems tighten tracking (`-0.02em` to `-0.05em`) as size increases. Default tracking on a 72px headline looks like a template.
+- **No tonal hierarchy in body text** — body, muted, and faint text all the same color, different only in size. Real hierarchies use at least three steps.
+- **Same `line-height: 1.5`** on a 12px caption and a 56px headline.
+- **Bold as the only emphasis tool** — never italic, never small-caps, never color-based emphasis.
+
+**State the hex values and their rationale before using them. State the typeface choice and the reason before specifying it.**
+
+---
+
+## Copywriting
+
+### Sentence-shape anti-patterns
+
+These grammatical patterns are so over-trained they communicate nothing:
+
+- **"In today's fast-paced/digital world..."** — throat-clearing opener that establishes context instead of making a claim.
+- **"Unlock/Unleash/Elevate/Supercharge/Empower your [noun]"** — verb-of-vague-empowerment + possessive + abstract noun. The most over-trained grammatical slot in SaaS copy.
+- **"Whether you're a [X] or a [Y], [Product] has you covered"** — the faux-inclusive opener.
+- **"Say goodbye to [pain point]"** — as if the pain point is a character leaving a party.
+- **"Built for teams of every size"** or "Built for [speed/scale/teams] at every level."
+- **Em-dash sentences that restate the same claim twice** — "We don't just build software — we build the future of work." The second half adds nothing.
+- **Rule-of-three adjective stacks**: "Fast. Reliable. Secure." Every SaaS company has this. None of them mean anything because none of them are specific.
+- **"Trusted by 10,000+ teams"** with no source, no named company — visual filler, not evidence.
+- **Bulleted lists where every line begins with the same gerund**: "Streamline your... Automate your... Optimize your..." Gerund + possessive noun, 6–8 bullets.
 - **"Designed with [audience] in mind"** — the passive-voice hedge that avoids making a specific claim.
 
-### 3b. Structural content defaults
+### Structural content anti-patterns
 
-- **Generic page titles** like "Home | Product" or "About Us | Company" that tell search engines and users nothing specific.
-- **Meta descriptions that read like a product brochure** rather than a specific, useful answer to a user's search intent.
-- **"Our Story" or "About Us" copy that reads like a LinkedIn summary** — founded in year, mission to disrupt, passionate team, world-class product.
-- **Blog post introductions that begin with a question** the reader did not have: "Ever wondered why [generic industry problem]?"
-- **Section headers phrased as vague nouns** ("Features," "Solutions," "Why Us," "Get Started") rather than claims or specific promises.
-- **CTA button copy that only says "Get Started," "Learn More," or "Try Free"** — not specific to what the action actually does or delivers.
-- **FAQ content that answers no real objections** — questions invented to pad the page ("What is [Product]?" "How do I get started?") rather than the real questions from sales calls.
-- **Social proof from fictional or unnamed companies** ("Leading companies trust us") rather than earned, attributed, specific testimony.
+**DO NOT default to:**
 
-### 3c. Tone and voice defaults
+- **Generic page titles** like "Home | Product" or "About Us | Company."
+- **Meta descriptions that read like a brochure** rather than a specific answer to a search query.
+- **"Our Story" copy** that reads like a LinkedIn summary — founded in year, mission to disrupt, passionate team.
+- **Blog posts that open with a question** the reader did not have: "Ever wondered why [generic problem]?"
+- **Section headers as vague nouns** — "Features," "Solutions," "Why Us" — rather than specific claims.
+- **CTA copy that only says "Get Started" or "Learn More"** — not specific to what the action does.
+- **FAQ content invented to pad the page** rather than the real objections from actual sales calls.
 
-- **Writing in a "professional" register that strips all personality** — flat, inoffensive, interchangeable with any other company in the category.
-- **Addressing the user as "you" while writing about them as if they are a persona abstraction** ("Teams like yours need...") rather than a person with a specific problem.
-- **Using "seamless," "intuitive," "powerful," or "robust"** as adjectives without any specific evidence — these words have been used so often that they communicate nothing except that the writer had no more specific thing to say.
-- **Active voice mimicry without subject clarity** — "Enabling teams to ship faster" has no grammatical subject. Who enables? What ships? Faster than what?
-
-**Instead:** Write one sentence that only makes sense for this specific product — a sentence that a competitor could not copy-paste into their own website without it being obviously wrong. If the company name can be swapped out and the sentence still works, delete it.
+**The test**: Write one sentence that a competitor literally cannot copy-paste into their own site without it being obviously wrong. If the company name can be swapped out and it still works, delete it.
 
 ---
 
-## Section 4 — UX Design & Information Architecture (UX Designer perspective)
+## UX & Information Architecture
 
-These are the patterns that a 40-year UX researcher or information architect would flag in a heuristic review.
+### Page structure anti-patterns
 
-### 4a. Page and flow structure defaults
+**DO NOT default to:**
 
-- **Every landing page follows the identical section sequence** — Hero → Logo strip → Features (3 or 6 cards) → How It Works (3 steps) → Testimonial carousel → Pricing (3 tiers) → FAQ accordion → Final CTA banner → Footer — applied to every product without asking whether this sequence serves this specific conversion goal.
-- **"How It Works" sections with exactly 3 steps, each numbered** regardless of how many steps the actual process takes.
-- **Onboarding flows with a progress bar at the top and no skip option** — the default "wizard" pattern applied to every registration flow without considering whether the user actually needs to complete all steps before getting value.
-- **Empty states that just say "No items found"** without explaining what items are, how to create one, or what the user should do next.
-- **Error messages that say "Something went wrong"** or "An error occurred" with no actionable next step and no indication of what caused the problem.
-- **Forms with no inline validation**, all errors appearing only after submit, all at once, at the top of the form.
-- **Modal dialogs for every confirmation action** — including for actions that are trivially reversible, where a toast or inline toggle would be less disruptive.
-- **Navigation items that mirror the company's internal department structure** rather than the user's mental model of the tasks they are trying to complete.
-- **Breadcrumbs generated for every page** regardless of whether the site is shallow enough that breadcrumbs add no navigational value.
+- **The identical section sequence for every product**: Hero → Logo strip → Features (3 or 6 cards) → How It Works (3 steps) → Testimonials → Pricing (3 tiers) → FAQ → CTA → Footer. Fine as a skeleton. Slop when shipped unmodified.
+- **"How It Works" with exactly 3 steps** regardless of how many steps the process actually takes.
+- **Progress bar onboarding with no skip option** — the default wizard applied to every registration without asking if users need all steps before getting value.
+- **Empty states that say "No items found"** with no explanation, no action, no next step.
+- **Error messages that say "Something went wrong"** with no actionable information about what or why.
+- **Forms with no inline validation** — all errors appear after submit, all at once, at the top.
+- **Navigation items that mirror internal department structure** rather than the user's task model.
 
-### 4b. Interaction design defaults
+### Interaction anti-patterns
 
-- **Every hover state is an opacity reduction or color lightening** — `opacity: 0.7` or a tint of the base color — without considering whether the element needs a different affordance signal.
-- **Focus styles removed or suppressed** because they "look ugly" — accessibility failure disguised as aesthetic preference.
-- **Scroll-triggered animations on every section** — elements sliding up, fading in, or scaling on scroll applied uniformly because it "feels dynamic," regardless of whether motion serves the content.
-- **Infinite scroll with no option to return to position** — applied to every list because pagination feels "old."
-- **Hamburger menus on tablet breakpoints** where there is sufficient horizontal space for visible navigation.
-- **Click targets smaller than 44×44px** on mobile — the single most common mobile usability failure, and the most avoidable.
-- **No loading states or skeleton screens** — content appears or a spinner shows, with nothing in between.
-- **Tooltips as the only way to access critical information** — information hidden behind hover states is inaccessible on touch devices.
+**DO NOT default to:**
 
-### 4c. Accessibility defaults (the ignored discipline)
+- **`opacity: 0.7` hover states on everything** — the same affordance signal on every element type.
+- **Focus styles removed** because they "look ugly" — this is accessibility failure disguised as aesthetic preference.
+- **Scroll-triggered animations on every section** uniformly because it "feels dynamic."
+- **Hamburger menus on tablet** where there is enough horizontal space for visible navigation.
+- **Click targets smaller than 44×44px on mobile** — the most common and most avoidable mobile usability failure.
+- **Tooltips as the only way to access critical information** — hover states are inaccessible on touch devices.
 
-- **Color contrast ratios not checked** — text color and background color chosen for aesthetics without verifying WCAG 2.1 AA (4.5:1 for normal text, 3:1 for large text).
-- **Images with no `alt` text**, or `alt` text that just repeats the filename or says "image."
-- **Icon-only buttons with no accessible label** (`aria-label` missing) — a button that is visually a trash-can icon has no meaning to a screen reader user.
-- **Form inputs without associated `<label>` elements** — placeholder text used as a substitute for a label, which disappears when the user starts typing.
-- **`<div>` and `<span>` used as interactive elements** with click handlers but no `role`, no `tabindex`, and no keyboard event handler.
-- **Heading levels skipped** — jumping from `<h1>` to `<h3>` because the `<h3>` style looked right, breaking document structure for screen readers.
-- **No `skip to main content` link** for keyboard users who would otherwise have to tab through an entire navigation on every page.
-- **Animations with no `prefers-reduced-motion` media query** — users with vestibular disorders, epilepsy, or motion sensitivity cannot opt out.
+### Accessibility anti-patterns (the ignored discipline)
 
-**Instead:** Ask what the one thing this specific page needs the visitor to do or believe, and structure every element around that. Remove anything that does not contribute. Real IA is subtraction.
+**DO NOT default to:**
+
+- **Color contrast not checked** — WCAG 2.1 AA requires 4.5:1 for normal text, 3:1 for large text. Chosen-for-aesthetics colors frequently fail.
+- **Images with no `alt` text**, or `alt` text that repeats the filename.
+- **Icon-only buttons with no `aria-label`** — a trash-can icon has no meaning to a screen reader.
+- **Form inputs without `<label>` elements** — placeholder text disappears when typing and is not a label substitute.
+- **`<div>` click handlers with no `role`, no `tabindex`, no keyboard event**.
+- **Heading levels skipped** — `<h1>` → `<h3>` because the style looked right, breaking screen reader document structure.
+- **No `prefers-reduced-motion` media query** on animations — users with vestibular disorders cannot opt out.
 
 ---
 
-## Section 5 — Front-End Web Development (Web Developer perspective)
+## Front-End Development
 
-These are the patterns that a 40-year front-end engineer would call out in a code review.
+### HTML anti-patterns
 
-### 5a. HTML defaults
+**DO NOT default to:**
 
-- **Entire layouts built from `<div>` and `<span>`** with no semantic HTML — no `<main>`, `<nav>`, `<header>`, `<footer>`, `<article>`, `<section>`, `<aside>`, `<figure>`. Semantic HTML is not a nicety; it is the document model.
-- **`<br><br>` used as a paragraph separator** instead of `<p>` elements with appropriate margin.
-- **Inline `style` attributes** scattered through markup instead of class-based styling.
-- **Images without `width` and `height` attributes** causing layout shift (Cumulative Layout Shift, CLS) as they load.
-- **Missing `<meta name="description">`, `<meta property="og:title">`, `<link rel="canonical">`** — the minimum viable SEO and social-sharing metadata, absent.
-- **`<title>` tags left as the framework default** — "React App," "Vite App," "My Next.js Project" — shipped to production.
-- **No `lang` attribute on `<html>`** — preventing screen readers from using the correct language profile.
-- **Non-descriptive link text** — "click here," "read more," "learn more" — instead of text that describes the destination.
+- **Entire layouts in `<div>` and `<span>`** with no semantic HTML — no `<main>`, `<nav>`, `<header>`, `<footer>`, `<article>`, `<section>`, `<aside>`, `<figure>`. Semantic HTML is the document model, not a nicety.
+- **`<br><br>` as paragraph separator** instead of `<p>` with margin.
+- **Inline `style` attributes** scattered through markup.
+- **Images without `width` and `height` attributes** — causes Cumulative Layout Shift.
+- **Missing `<meta name="description">`, `<meta property="og:title">`, `<link rel="canonical">`**.
+- **`<title>` left as the framework default** — "React App," "Vite App," "My Next.js Project" shipped to production.
+- **No `lang` attribute on `<html>`**.
+- **Non-descriptive link text** — "click here," "read more," "learn more."
 
-### 5b. CSS defaults
+### CSS anti-patterns
 
-- **`transition: all 0.3s ease` on every interactive element** — a single easing function and a single duration applied to every motion in the interface. Real motion design varies easing and duration based on the element's size, travel distance, and semantic weight.
-- **`!important` used to override specificity conflicts** instead of fixing the underlying specificity problem.
-- **Magic numbers in CSS** — `margin-top: 37px`, `padding: 13px 22px` — values with no relationship to a spacing scale.
-- **No CSS custom properties (variables) for color, spacing, or typography** — values repeated literally across hundreds of lines.
-- **`px` units for all font sizes and line heights** instead of `rem`/`em` — preventing the user's browser font-size preference from taking effect.
-- **`z-index: 9999`** (or 999, or 99999) used as a blunt instrument without a defined stacking context strategy.
-- **Media queries defined at arbitrary breakpoints** (768px, 1024px because those "feel like" tablet and desktop) rather than at the natural breakpoints of the content.
-- **No `max-width` on body text** — lines of prose that stretch to 1400px on wide monitors, making the text unreadable.
-- **CSS Grid or Flexbox used for everything including cases where one or the other is wrong** — Flexbox for two-dimensional grid layouts; Grid for single-axis flow.
+**DO NOT default to:**
 
-### 5c. JavaScript defaults
+- **`transition: all 0.3s ease` on every interactive element** — one easing curve and one duration for every motion in the interface. Real motion design varies by element size, travel distance, and semantic weight.
+- **`!important` to fix specificity conflicts** instead of fixing the underlying specificity.
+- **Magic numbers** — `margin-top: 37px`, `padding: 13px 22px` — values with no relationship to a spacing scale.
+- **No CSS custom properties** for color, spacing, or typography — values repeated literally across hundreds of lines.
+- **`px` for all font sizes** instead of `rem`/`em` — disabling the user's browser font-size preference.
+- **`z-index: 9999`** as a blunt instrument without a defined stacking context strategy.
+- **Breakpoints at 768px and 1024px** because those "feel like" tablet and desktop — not at the natural breakpoints of the actual content.
+- **No `max-width` on body text** — prose stretching to 1400px on wide monitors is unreadable.
+
+### JavaScript anti-patterns
+
+**DO NOT default to:**
 
 - **`console.log` statements left in production code.**
-- **Event listeners attached directly to DOM nodes inside loops** without delegation, creating memory leaks.
-- **Fetching data without error handling** — `fetch(url).then(r => r.json()).then(setData)` with no `.catch()` and no loading/error state.
-- **`useEffect` with an empty dependency array `[]` used as a componentDidMount substitute** in React, when the actual effect has dependencies that are not declared.
-- **State stored in component local state that should be lifted**, causing prop-drilling ten components deep.
-- **Entire feature flags implemented as `if (process.env.NODE_ENV === 'development')`** — not real feature flagging; just environment gating.
-- **`any` type used everywhere in TypeScript** because adding types "takes too long" — defeating the purpose of using TypeScript at all.
-- **No input sanitization** on user-supplied content before it is rendered into the DOM — XSS vulnerability introduced by default.
-- **`setTimeout` used as a substitute for a proper loading state or event listener** — `setTimeout(() => setLoaded(true), 500)` as a hack that fails on slow connections.
+- **`fetch()` with no `.catch()` and no loading or error state.**
+- **`useEffect` with an empty dependency array `[]` as a `componentDidMount` substitute** when the effect has undeclared dependencies.
+- **`any` type used everywhere in TypeScript** — defeating the purpose of using TypeScript.
+- **No input sanitization** before rendering user-supplied content — XSS vulnerability introduced by default.
+- **`setTimeout(() => setLoaded(true), 500)`** as a substitute for a real loading state — fails on slow connections.
 
-### 5d. Performance defaults
+### Performance anti-patterns
 
-- **Unoptimized images** — full-resolution PNGs or JPEGs served at display size, no WebP, no `srcset`, no `loading="lazy"` on below-fold images.
-- **Loading all JavaScript in a single bundle** — no code splitting, no dynamic imports, no route-based chunking.
-- **Third-party scripts loaded synchronously in `<head>`** — Google Analytics, chat widgets, A/B testing scripts blocking the main thread before the page renders.
-- **No `font-display: swap`** on web fonts — invisible text during font load (FOIT) instead of a flash of system text (FOUT).
-- **Render-blocking CSS** loaded via `<link rel="stylesheet">` for styles that are not used above the fold.
-- **Web fonts loaded for weights and styles never used** — loading all 18 weights of a variable font "just in case."
+**DO NOT default to:**
 
-**Instead:** Before writing a component or page, name the semantic elements that belong in it, the data flow, the error states, and the loading state. If you cannot name those, the component is not ready to be built.
+- **Unoptimized full-resolution PNGs/JPEGs** — no WebP, no `srcset`, no `loading="lazy"` on below-fold images.
+- **All JavaScript in one bundle** — no code splitting, no dynamic imports, no route-based chunking.
+- **Third-party scripts in `<head>` synchronously** — analytics, chat widgets blocking the main thread before the page renders.
+- **No `font-display: swap`** — invisible text during font load (FOIT) instead of a flash of system text.
+
+**Before writing a component, name: the semantic elements it contains, the data flow, the error states, and the loading state. If you cannot name those, the component is not ready to be built.**
 
 ---
 
-## Section 6 — DevOps & Platform Engineering perspective
+## DevOps & Infrastructure
 
-These are the patterns that a 40-year systems engineer or SRE would flag in an infrastructure review.
+### CI/CD anti-patterns
 
-### 6a. CI/CD pipeline defaults
+**DO NOT default to:**
 
-- **Three-stage pipelines (build → test → deploy) applied to every project** regardless of whether the project has tests, multiple deployment targets, or any deployment strategy beyond "push to main."
-- **Hardcoded secrets in pipeline YAML files** — `API_KEY: "abc123"` directly in the workflow definition, not referenced from a secrets store.
-- **`on: push` triggering pipelines on every branch** including branches that are not intended for deployment — no branch filtering, no path filtering.
-- **No pipeline caching** for `node_modules`, dependency layers, or build artifacts — re-downloading the entire dependency graph on every run.
-- **`npm install` instead of `npm ci`** in CI environments — non-deterministic installs that may differ from local development.
-- **Deploying immediately on merge to main** with no staging environment, no smoke test, no deployment gate.
-- **Health checks that only check HTTP 200** — not verifying that the application is actually serving correct content or that downstream dependencies are reachable.
+- **3-stage pipelines (build → test → deploy) for every project** regardless of whether it has tests, multiple targets, or any deployment strategy beyond "push to main."
+- **Secrets hardcoded in pipeline YAML** — `API_KEY: "abc123"` in the workflow definition, not from a secrets store.
+- **`on: push` triggering on every branch** with no branch or path filtering.
+- **`npm install` instead of `npm ci`** in CI — non-deterministic installs.
+- **No pipeline caching** — re-downloading the entire dependency graph on every run.
+- **Deploying immediately on merge to main** with no staging, no smoke test, no gate.
 
-### 6b. Docker and containerization defaults
+### Container anti-patterns
 
-- **`FROM node:latest`** (or any `latest` tag) — non-deterministic builds that break silently when the upstream image is updated.
-- **Running containers as root** — no `USER` instruction in the Dockerfile, not `USER node` or a named non-root user.
-- **Copying the entire project directory into the container** with `COPY . .` before installing dependencies — busting the Docker layer cache on every source change, including changes that do not affect dependencies.
-- **No `.dockerignore` file** — copying `node_modules`, `.git`, test files, and local environment files into the image.
-- **Multi-gigabyte images** because a full development environment (compilers, dev tools, test runners) was included in the production image instead of using a multi-stage build.
-- **No `HEALTHCHECK` instruction** — the container reports healthy immediately on start regardless of whether the application inside it is actually ready.
+**DO NOT default to:**
 
-### 6c. Infrastructure-as-code defaults
+- **`FROM node:latest`** — non-deterministic builds that break silently when upstream changes.
+- **Running containers as root** — no `USER` instruction in the Dockerfile.
+- **`COPY . .` before `npm install`** — busting Docker layer cache on every source change.
+- **No `.dockerignore`** — copying `node_modules`, `.git`, and test files into the image.
+- **No multi-stage build** — development tools, compilers, and test runners included in the production image.
+- **No `HEALTHCHECK` instruction** — the container reports healthy immediately regardless of app readiness.
 
-- **Hardcoded environment names, resource sizes, and region names** in Terraform or CloudFormation without variables or parameterization — impossible to reuse across environments.
-- **No remote state backend** — Terraform state stored locally, making collaborative infrastructure management impossible.
-- **`terraform apply` without `terraform plan` review** in an automated pipeline — applying infrastructure changes without a human-readable diff.
-- **All infrastructure in a single monolithic file** — `main.tf` with 2,000 lines covering networking, compute, databases, and IAM in one place.
-- **No tagging strategy** for cloud resources — impossible to attribute costs, identify owners, or implement resource lifecycle policies.
-- **Wide-open security groups** — `0.0.0.0/0` on ingress rules for ports that should only be accessible from a VPC or a specific IP range.
-- **No log retention policy** — logs accumulating indefinitely in a storage bucket or log group with no expiration.
+### Infrastructure-as-code anti-patterns
 
-### 6d. Monitoring and observability defaults
+**DO NOT default to:**
 
-- **No structured logging** — `console.log("something happened")` strings with no timestamp, no request ID, no severity level, no machine-parseable format.
-- **Alerts only on downtime** — no alerting on latency percentiles (p95, p99), error rate thresholds, or saturation signals.
-- **Dashboards with 30 panels covering every metric** without a clear answer to: what does "healthy" look like on this dashboard, and what does "failing" look like?
-- **No runbook linked from alerts** — an on-call engineer receives a page with no documented procedure for investigating or remediating the issue.
-- **Single-environment monitoring** — production is monitored but staging is not, meaning regressions are only caught in production.
+- **Hardcoded environment names, regions, and resource sizes** in Terraform/CloudFormation with no variables — impossible to reuse across environments.
+- **No remote state backend** — Terraform state stored locally.
+- **`terraform apply` without plan review** in an automated pipeline.
+- **All infrastructure in a single monolithic file** — `main.tf` with 2,000 lines.
+- **`0.0.0.0/0` ingress rules** on ports that should only be accessible from within a VPC.
+- **No log retention policy** — logs accumulating indefinitely.
 
-**Instead:** For every piece of infrastructure or pipeline code generated, state what the production environment, team size, and deployment frequency are. If those are unknown, say so rather than generating a generic three-stage YAML and calling it production-ready.
+**For every infrastructure or pipeline file generated, state what the production environment, team size, and deployment frequency are. If those are unknown, say so — do not generate a generic YAML and call it production-ready.**
 
 ---
 
-## Section 7 — Content Development & Documentation (Technical Writer / Content Strategist perspective)
+## Documentation & Content
 
-### 7a. Documentation defaults
+### Documentation anti-patterns
 
-- **README files that describe what the project is without explaining how to use it** — paragraphs of feature description, followed by a badge row, followed by a one-line installation command and nothing else.
-- **Installation instructions that assume a clean machine** — no mention of required Node version, Python version, system dependencies, or environment variable configuration.
-- **No "Getting Started" path** distinct from "Full API Reference" — every user, whether beginner or expert, is dumped into the same flat documentation structure.
-- **Code examples with no error paths shown** — only the happy path, never the "what do I do if this returns a 401" path.
-- **Changelog entries that say "Bug fixes and performance improvements"** with no specifics — copied from Apple's iOS release notes, equally uninformative.
-- **API documentation that only documents parameters** without explaining when to use the endpoint, what preconditions must be true, and what the caller is responsible for after calling it.
-- **Outdated screenshots in documentation** — showing a UI that no longer exists, eroding trust in every other document in the system.
+**DO NOT default to:**
 
-### 7b. Content strategy defaults
+- **README that describes what the project is without explaining how to use it** — feature paragraphs, badge row, one-line install command, nothing else.
+- **Installation instructions that assume a clean machine** — no mention of required Node/Python version, system dependencies, or environment variable configuration.
+- **No "Getting Started" path distinct from "Full API Reference"** — everyone dumped into the same flat structure.
+- **Code examples with only the happy path** — no error handling, no 401 path, no edge case.
+- **Changelog entries that say "Bug fixes and performance improvements"** with no specifics.
+- **API documentation that only lists parameters** without explaining when to use the endpoint, preconditions, and caller responsibilities.
 
-- **Publishing cadence set to "2 posts per week"** without any analysis of whether this audience reads that much, whether there is enough original material to sustain it, or whether the posts will have any distribution.
-- **Topic selection by keyword volume alone** — writing about whatever has the highest search volume rather than what the product team has genuine expertise or opinion about.
-- **"Pillar page" and "cluster content" architectures** generated as the default SEO content strategy without knowing whether the product's buyers use search at all.
-- **Case studies that describe what was done but not what the outcome was** — "We helped Company X redesign their dashboard" with no before/after metric.
-- **Video transcripts auto-published as blog posts** with no editing — the grammar of spoken word is different from the grammar of written prose; they are not interchangeable.
+### Content strategy anti-patterns
 
----
+**DO NOT default to:**
 
-## Section 8 — Cross-Discipline Code Quality (All Engineering roles)
-
-These are failures that cut across every technical discipline.
-
-- **God components / god functions** — a single React component or function that handles data fetching, business logic, formatting, error handling, and rendering. Every discipline's equivalent of the "one big file."
-- **No error boundaries** in React trees — a single component failure brings down the entire UI subtree with a white screen.
-- **No environment variable validation on startup** — the application starts, runs fine until it tries to use a missing API key 10 minutes later, and fails with a cryptic error that has nothing to do with the root cause.
-- **`git commit -m "fix"` or `git commit -m "update"` as commit messages** — no context, no scope, no ability to understand what changed from the history.
-- **Dependencies pinned to `^major.minor.patch`** in `package.json` — allowing minor and patch updates automatically, meaning the same `npm install` produces different results six months later.
-- **No `.nvmrc` or `engines` field in `package.json`** — the required Node version is documented nowhere, and the project silently fails on older or newer runtimes.
-- **Tests that only test the happy path** and are designed to pass, not to catch regressions.
-- **Copy-pasted code across three files** with slight variations instead of an abstracted, parameterized function — three bugs introduced simultaneously when the logic needs to change.
-- **Over-engineered abstractions for a project that is not yet large enough to need them** — microservices for a solo-developer project, a design system for a four-page site, event sourcing for a to-do list.
+- **"2 posts per week" publishing cadence** without knowing whether the audience reads that much or whether there's original material to sustain it.
+- **Topic selection by keyword volume alone** — writing whatever has the highest search volume regardless of genuine team expertise.
+- **Case studies that describe what was done with no outcome** — "We helped Company X redesign their dashboard" with no before/after metric.
+- **Video transcripts auto-published as blog posts** — spoken-word grammar is not written-word grammar.
 
 ---
 
-## Section 9 — The Final Self-Check (Every Discipline)
+## Cross-Discipline Code Quality
 
-Before showing any output — visual, copy, structural, or technical — answer these questions. If any answer is "no" or "I don't know," revise before showing.
+These failures cut across every technical discipline:
 
-1. **Is this output specific to this product, team, or context?** Could the code, copy, or design be lifted verbatim into a different product and still read as correct? If yes, it is generic. Revise.
-
-2. **Did I choose this because it is right, or because it was the first thing that came to mind?** The first-instinct output of a language model is, by definition, the statistical average of its training distribution. The average is not the premium. The average is the slop.
-
-3. **Is there a concrete, specific fact driving this choice?** A real measurement, a named constraint, a specific user need, an actual business rule — not a vibe, not "it looked tech-company enough."
-
-4. **Would a 40-year practitioner in this discipline be embarrassed to ship this?** The senior engineer who has written more bad code than you have written any code can spot these patterns in seconds. Would they call a code review? Would they red-pen the copy? Would they reject the design in critique?
-
-5. **Have I said what this is NOT going to do?** Real professional output includes constraints, edge cases, and explicit non-goals. Slop only describes the happy path.
-
-6. **Is there anything in this output that exists only because I thought it was expected, not because it serves the user?** The third pricing tier. The FAQ section. The "About Us" page. The dark mode. The particle background. If you cannot name why it is there, remove it.
+- **God components / god functions** — one React component or function handling data fetching, business logic, formatting, error handling, and rendering simultaneously.
+- **No error boundaries in React trees** — one component failure brings down the entire UI with a white screen.
+- **No environment variable validation on startup** — the app starts, runs fine for 10 minutes, then fails with a cryptic error that has nothing to do with the root cause.
+- **`git commit -m "fix"` or `git commit -m "update"`** — no context, no scope, no history.
+- **`^major.minor.patch` in `package.json`** — the same `npm install` produces different results six months later.
+- **No `.nvmrc` or `engines` field** — the required Node version is documented nowhere.
+- **Tests designed to pass, not to catch regressions** — only the happy path.
+- **Copy-pasted code across three files** with slight variations — three identical bugs when the logic needs to change.
+- **Over-engineered abstractions for a project not yet large enough to need them** — microservices for a solo-developer project, a design system for a four-page site.
 
 ---
 
-## Section 10 — How to Respond When Pushed Back
+## When the User Pushes Back
 
-If the user says "this still looks AI-generated," "this is generic slop," "this looks like every other SaaS site," or "a junior could have written this":
+If the user says "this still looks AI-generated," "this is generic slop," or "a junior could have written this":
 
-**Do not:** Adjust spacing. Change the color. Swap one icon for another. Add more sections. Make the font bigger.
+**Do not**: Adjust spacing. Change a color. Swap one icon for another. Add more sections.
 
-**Do:** Name the specific item from the checklist above that you defaulted to. State it explicitly: "I defaulted to [pattern]. The replacement decision is [specific, justified alternative]." Then rebuild from that replacement decision, not from the previous draft with surface changes applied.
+**Do**: Name the specific item from above that you defaulted to. State it explicitly — "I defaulted to [pattern]. The replacement is [specific, justified alternative]." Then rebuild from that decision, not from the previous draft with surface changes.
 
-The difference between a 40-year practitioner and a model generating defaults is not technique — it is the willingness to throw away a draft that has no specific reason to exist.
+The difference between a 40-year practitioner and a model generating defaults is not technique. It is the willingness to discard a draft that has no specific reason to exist.
