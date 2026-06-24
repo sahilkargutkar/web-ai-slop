@@ -61,7 +61,7 @@
       --border2: #333;
       --text: #d4d4d4;
       --text2: #888;
-      --text3: #555;
+      --text3: #6b6b6b;
       --amber: #f59e0b;
       --amber-dim: #a16207;
       --cyan: #06b6d4;
@@ -72,8 +72,23 @@
       --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     }
 
-    html {
-      scroll-behavior: smooth
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     body {
@@ -120,7 +135,6 @@
     .section-label {
       font-family: var(--mono);
       font-size: .75rem;
-      text-transform: uppercase;
       letter-spacing: .08em;
       color: var(--amber);
       margin-bottom: 12px;
@@ -139,6 +153,26 @@
       color: var(--text2);
       max-width: 640px;
       margin-bottom: 32px;
+    }
+
+    /* Skip to main */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      z-index: 999;
+      padding: 8px 16px;
+      background: var(--amber);
+      color: #000;
+      font-family: var(--mono);
+      font-size: .8125rem;
+      text-decoration: none;
+      border-radius: 0 0 4px 0;
+      transition: top .15s;
+    }
+
+    .skip-link:focus {
+      top: 0;
     }
 
     /* Nav */
@@ -171,6 +205,18 @@
       color: var(--amber)
     }
 
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 10px;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
     .nav-links {
       display: flex;
       gap: 24px;
@@ -191,7 +237,7 @@
     /* Hero */
     .hero {
       padding: 120px 0 80px;
-      text-align: center;
+      text-align: left;
     }
 
     .hero-badge {
@@ -200,7 +246,6 @@
       gap: 6px;
       font-family: var(--mono);
       font-size: .6875rem;
-      text-transform: uppercase;
       letter-spacing: .1em;
       padding: 4px 10px;
       border: 1px solid var(--amber-dim);
@@ -217,22 +262,19 @@
       margin-bottom: 20px;
     }
 
-    .hero h1 span {
-      background: linear-gradient(135deg, var(--amber), var(--cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero h1 .ai-gen {
+      color: var(--amber);
     }
 
     .hero .lede {
       font-size: 1.25rem;
-      margin: 0 auto 40px
+      margin: 0 0 40px
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: wrap
     }
 
@@ -402,7 +444,6 @@
 
     .tell-cat {
       font-size: .6875rem;
-      text-transform: uppercase;
       letter-spacing: .06em;
       color: var(--text3);
       margin-left: auto;
@@ -496,7 +537,6 @@
       display: inline-block;
       font-family: var(--mono);
       font-size: .625rem;
-      text-transform: uppercase;
       letter-spacing: .08em;
       padding: 2px 8px;
       border-radius: 3px;
@@ -523,7 +563,6 @@
       padding: 8px 14px;
       font-family: var(--mono);
       font-size: .6875rem;
-      text-transform: uppercase;
       letter-spacing: .08em;
       border-bottom: 1px solid var(--border);
     }
@@ -572,6 +611,214 @@
 
     .compare-box-body .intentional-li::before {
       background: var(--green)
+    }
+
+    /* Scanner Tabs */
+    .scanner-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .scanner-tab {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text2);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .scanner-tab:hover {
+      color: var(--text);
+      background: var(--surface2);
+    }
+
+    .scanner-tab.active {
+      color: var(--amber);
+      background: rgba(245, 158, 11, 0.08);
+      border-color: var(--amber-dim);
+    }
+
+    /* Catalog Filters */
+    .catalog-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+      justify-content: flex-start;
+    }
+
+    .catalog-filter {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-family: var(--mono);
+      font-size: .75rem;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color .15s, background .15s, color .15s;
+    }
+
+    .catalog-filter:hover {
+      color: var(--text);
+      border-color: var(--border2);
+    }
+
+    .catalog-filter.active {
+      background: var(--amber);
+      color: #000;
+      border-color: var(--amber);
+      font-weight: 600;
+    }
+
+    /* Swap Test */
+    .swap-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .swap-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .input-group label {
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .input-group input {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: .875rem;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .input-group input:focus {
+      border-color: var(--amber);
+    }
+
+    .swap-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .swap-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .swap-card-header {
+      padding: 10px 16px;
+      font-family: var(--mono);
+      font-size: .6875rem;
+      letter-spacing: .08em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .swap-card.slop .swap-card-header {
+      background: rgba(239, 68, 68, .06);
+      color: var(--red);
+    }
+
+    .swap-card.intentional .swap-card-header {
+      background: rgba(34, 197, 94, .06);
+      color: var(--green);
+    }
+
+    .swap-card-body {
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .swap-card-body h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .swap-card-body p {
+      font-size: .8125rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .swap-card-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--surface2);
+      font-size: .75rem;
+      color: var(--text2);
+    }
+
+    .warning-text {
+      color: var(--amber);
+    }
+
+    .success-text {
+      color: var(--green);
+    }
+
+    .highlight-brand {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    .highlight-comp {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    @media(max-width:768px) {
+      .swap-inputs {
+        grid-template-columns: 1fr;
+      }
+
+      .swap-results {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    #btn-copy-command {
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+
+    #btn-copy-command:active {
+      transform: scale(0.98);
     }
 
     /* Workflow */
@@ -743,8 +990,29 @@
         grid-template-columns: 1fr
       }
 
+      .nav-toggle {
+        display: block
+      }
+
       .nav-links {
         display: none
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px;
+      }
+
+      nav {
+        position: relative;
       }
 
       .score-box {
@@ -756,160 +1024,246 @@
 
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <nav>
     <div class="container">
       <div class="logo">web-ai-<span>slop</span></div>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       <ul class="nav-links">
         <li><a href="#scanner">Scanner</a></li>
-        <li><a href="#tells">Top 10 Tells</a></li>
+        <li><a href="#tells">Tells Catalog</a></li>
         <li><a href="#compare">Compare</a></li>
+        <li><a href="#swap-test">Swap Test</a></li>
         <li><a href="#workflow">Workflow</a></li>
         <li><a href="https://github.com/sahilkargutkar/web-ai-slop" target="_blank">GitHub</a></li>
       </ul>
     </div>
   </nav>
 
-  <header class="hero">
-    <div class="container">
-      <div class="hero-badge">v1.0.0 &middot; Agent Skill</div>
-      <h1>Detect &amp; Eliminate<br>AI-Generated <span>Slop</span></h1>
-      <p class="lede">An agent skill that catches generic AI patterns — visual clichés, copywriting tropes, code tells,
-        and UX defaults — before they ship. Integrates into any AI coding assistant.</p>
-      <div class="hero-actions">
-        <span class="btn btn-primary">npx skills add sahilkargutkar/web-ai-slop</span>
-        <span class="btn">Read the docs &rarr;</span>
+  <main id="main-content">
+    <header class="hero">
+      <div class="container">
+        <div class="hero-badge">v1.0.0 &middot; Agent Skill</div>
+        <h1>Detect &amp; Eliminate<br><span class="ai-gen">AI-Generated</span> <span class="slop-word">Slop</span></h1>
+        <p class="lede">An agent skill that identifies generic AI patterns before they reach production — from visual
+          clichés and copywriting tropes to code smells and predictable UX decisions. Works alongside any AI coding
+          assistant to help teams ship work that feels intentional, original, and human-crafted.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="btn-copy-command" aria-label="Copy installation command">
+            npx skills add sahilkargutkar/web-ai-slop
+            <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="margin-left: 8px; vertical-align: middle;">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+          <span class="btn">Read the docs &rarr;</span>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num">14</div>
+            <div class="stat-label">Disciplines Checked</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Patterns Flagged</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Hits = Discard &amp; Rebuild</div>
+          </div>
+        </div>
       </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-num">14</div>
-          <div class="stat-label">Disciplines Checked</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">50+</div>
-          <div class="stat-label">Patterns Flagged</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Hits = Discard &amp; Rebuild</div>
-        </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <section class="section" id="scanner">
-    <div class="container">
-      <div class="section-label">Interactive Demo</div>
-      <h2>Slop Scanner</h2>
-      <p class="lede">Check which of these telltale patterns you&rsquo;ve seen on a site. If any category hits
-        <strong>2+ items</strong>, the skill flags it as slop.</p>
+    <section class="section" id="scanner">
+      <div class="container">
+        <div class="section-label">Interactive Demo</div>
+        <h2>Slop Scanner</h2>
+        <p class="lede">Check which of these telltale patterns you&rsquo;ve seen on a site. If any category hits
+          <strong>2+ items</strong>, the skill flags it as AI-Generated slop.
+        </p>
 
-      <div class="scanner-box">
-        <div class="scanner-header">
-          <span class="scanner-dot r"></span>
-          <span class="scanner-dot y"></span>
-          <span class="scanner-dot g"></span>
-          scan: slop-detector.js
-        </div>
-        <div class="scanner-body">
-          <p class="scanner-intro">Common AI slop patterns &mdash; check the ones you&rsquo;ve spotted:</p>
-          <div class="tell-list" id="tell-list"></div>
-          <div class="score-box">
-            <div class="score-num low" id="score-num">0</div>
-            <div>
-              <div class="score-label">patterns detected</div>
-              <div class="score-label" style="font-size:.75rem;color:var(--text3)" id="max-cat-label">max 0 in any
-                category</div>
+        <div class="scanner-box">
+          <div class="scanner-header">
+            <span class="scanner-dot r"></span>
+            <span class="scanner-dot y"></span>
+            <span class="scanner-dot g"></span>
+            scan: slop-detector.js
+          </div>
+          <div class="scanner-body">
+            <div class="scanner-tabs">
+              <button class="scanner-tab active" data-filter="all">All</button>
+              <button class="scanner-tab" data-filter="Visual">Visual</button>
+              <button class="scanner-tab" data-filter="Color">Color</button>
+              <button class="scanner-tab" data-filter="Copy">Copywriting</button>
+              <button class="scanner-tab" data-filter="UX">UX</button>
+              <button class="scanner-tab" data-filter="Code">Code</button>
             </div>
-            <div class="score-verdict" id="score-verdict" style="background:rgba(34,197,55,.08);color:var(--green)">
-              CLEAN</div>
+            <p class="scanner-intro">Common AI slop patterns &mdash; check the ones you&rsquo;ve spotted:</p>
+            <div class="tell-list" id="tell-list"></div>
+            <div class="score-box">
+              <div class="score-num low" id="score-num">0</div>
+              <div>
+                <div class="score-label">patterns detected</div>
+                <div class="score-label" style="font-size:.75rem;color:var(--text3)" id="max-cat-label">max 0 in any
+                  category</div>
+              </div>
+              <div class="score-verdict" id="score-verdict" style="background:rgba(34,197,55,.08);color:var(--green)">
+                CLEAN</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="tells">
-    <div class="container">
-      <div class="section-label">Pattern Reference</div>
-      <h2>Top 10 Highest-Confidence Tells</h2>
-      <p class="lede">Any <strong>3 of these together</strong> almost certainly means a site was AI-generated without
-        human review.</p>
-      <div class="tells-grid" id="tells-grid"></div>
-    </div>
-  </section>
+    <section class="section" id="tells">
+      <div class="container">
+        <div class="section-label">Pattern Reference</div>
+        <h2>AI Slop Tells Catalog</h2>
+        <p class="lede">These patterns are highly indicative of AI generation without professional review. Filter by
+          discipline to explore all tells.</p>
 
-  <section class="section" id="compare">
-    <div class="container">
-      <div class="section-label">Side-by-Side</div>
-      <h2>Slop vs. Intentional Design</h2>
-      <p class="lede">The skill doesn&rsquo;t just flag problems &mdash; it helps rebuild with specific, contextual
-        decisions.</p>
-      <div class="compare-grid">
-        <div class="compare-box">
-          <div class="compare-box-header slop">AI Slop (Default Output)</div>
-          <div class="compare-box-body">
-            <ul>
-              <li class="slop-li">Purple aurora gradient blob behind hero</li>
-              <li class="slop-li">Bento grid of rounded-square icon cards</li>
-              <li class="slop-li">"Unlock your [noun]" headline with rule-of-3 adjectives</li>
-              <li class="slop-li">Circular-avatar testimonials, no specific outcomes</li>
-              <li class="slop-li">3-tier pricing with "Most Popular" highlighted</li>
-              <li class="slop-li"><code>transition: all 0.3s ease</code> on everything</li>
-              <li class="slop-li">Inter 400/600/700, default letter-spacing</li>
-            </ul>
-          </div>
+        <div class="catalog-filters">
+          <button class="catalog-filter active" data-filter="all">All Tells</button>
+          <button class="catalog-filter" data-filter="Visual">Visual</button>
+          <button class="catalog-filter" data-filter="Copy">Copywriting</button>
+          <button class="catalog-filter" data-filter="UX">UX &amp; IA</button>
+          <button class="catalog-filter" data-filter="Code &amp; Infra">Code &amp; DevOps</button>
+          <button class="catalog-filter" data-filter="Docs">Documentation</button>
         </div>
-        <div class="compare-box">
-          <div class="compare-box-header intentional">Intentional Design</div>
-          <div class="compare-box-body">
-            <ul>
-              <li class="intentional-li">No decorative gradient — content leads</li>
-              <li class="intentional-li">List layout or single focused CTA</li>
-              <li class="intentional-li">Specific headline: "Saves 14h/week on invoice reconciliation"</li>
-              <li class="intentional-li">Customer quotes with measurable before/after</li>
-              <li class="intentional-li">Single plan or usage-based, no fake tiers</li>
-              <li class="intentional-li"><code>transition: opacity 0.2s</code> on hover states only</li>
-              <li class="intentional-li">Chosen typeface with tightened tracking on headings</li>
-            </ul>
+
+        <div class="tells-grid" id="tells-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="container">
+        <div class="section-label">Side-by-Side</div>
+        <h2>Slop vs. Intentional Design</h2>
+        <p class="lede">The skill doesn&rsquo;t just flag problems &mdash; it helps rebuild with specific, contextual
+          decisions.</p>
+        <div class="compare-grid">
+          <div class="compare-box">
+            <div class="compare-box-header slop">AI Slop (Default Output)</div>
+            <div class="compare-box-body">
+              <ul>
+                <li class="slop-li">Purple aurora gradient blob behind hero</li>
+                <li class="slop-li">Bento grid of rounded-square icon cards</li>
+                <li class="slop-li">"Unlock your [noun]" headline with rule-of-3 adjectives</li>
+                <li class="slop-li">Circular-avatar testimonials, no specific outcomes</li>
+                <li class="slop-li">3-tier pricing with "Most Popular" highlighted</li>
+                <li class="slop-li"><code>transition: all 0.3s ease</code> on everything</li>
+                <li class="slop-li">Inter 400/600/700, default letter-spacing</li>
+              </ul>
+            </div>
+          </div>
+          <div class="compare-box">
+            <div class="compare-box-header intentional">Intentional Design</div>
+            <div class="compare-box-body">
+              <ul>
+                <li class="intentional-li">No decorative gradient — content leads</li>
+                <li class="intentional-li">List layout or single focused CTA</li>
+                <li class="intentional-li">Specific headline: "Saves 14h/week on invoice reconciliation"</li>
+                <li class="intentional-li">Customer quotes with measurable before/after</li>
+                <li class="intentional-li">Single plan or usage-based, no fake tiers</li>
+                <li class="intentional-li"><code>transition: opacity 0.2s</code> on hover states only</li>
+                <li class="intentional-li">Chosen typeface with tightened tracking on headings</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="workflow">
-    <div class="container">
-      <div class="section-label">Integration</div>
-      <h2>How the Skill Works</h2>
-      <p class="lede">The skill operates silently inside your AI coding assistant, following a <strong>draft &rarr;
-          check &rarr; discard &rarr; rebuild</strong> cycle.</p>
-      <div class="workflow">
-        <div class="workflow-step active">
-          <div class="workflow-num">1</div>
-          <div class="workflow-label">Draft</div>
-          <div class="workflow-desc">Generate output freely, no self-censoring</div>
-        </div>
-        <div class="workflow-arrow">&rarr;</div>
-        <div class="workflow-step">
-          <div class="workflow-num">2</div>
-          <div class="workflow-label">Check</div>
-          <div class="workflow-desc">Scan against 14 discipline checklists</div>
-        </div>
-        <div class="workflow-arrow">&rarr;</div>
-        <div class="workflow-step flag">
-          <div class="workflow-num">!</div>
-          <div class="workflow-label">Flag</div>
-          <div class="workflow-desc">2+ hits in any category = slop detected</div>
-        </div>
-        <div class="workflow-arrow">&rarr;</div>
-        <div class="workflow-step">
-          <div class="workflow-num">3</div>
-          <div class="workflow-label">Rebuild</div>
-          <div class="workflow-desc">Discard draft, make specific intentional choices</div>
+    <section class="section" id="swap-test">
+      <div class="container">
+        <div class="section-label">Interactive Playground</div>
+        <h2>The Master Swap Test</h2>
+        <p class="lede">Replace your product name with a competitor's. If the copy still makes complete sense, it's
+          generic AI slop. Real copywriting communicates specific, unique outcomes.</p>
+
+        <div class="swap-box">
+          <div class="swap-inputs">
+            <div class="input-group">
+              <label for="brand-name">Your Brand Name</label>
+              <input type="text" id="brand-name" value="AcmeFlow" placeholder="e.g. AcmeFlow">
+            </div>
+            <div class="input-group">
+              <label for="competitor-name">Competitor Name</label>
+              <input type="text" id="competitor-name" value="GlobalTech" placeholder="e.g. GlobalTech">
+            </div>
+          </div>
+
+          <div class="swap-results">
+            <div class="swap-card slop">
+              <div class="swap-card-header">AI Slop (Generic / Interchangeable)</div>
+              <div class="swap-card-body">
+                <h3 class="preview-headline">Empower your workflow with <span class="highlight-brand">AcmeFlow</span>
+                </h3>
+                <p class="preview-desc">In today's fast-paced digital world, <span
+                    class="highlight-brand">AcmeFlow</span> is the intuitive, seamless platform designed to unlock your
+                  potential and streamline your operations.</p>
+              </div>
+              <div class="swap-card-footer">
+                <span class="warning-text">⚠️ Notice how swapping the name to <span
+                    class="highlight-comp">GlobalTech</span> changes nothing about the core message.</span>
+              </div>
+            </div>
+
+            <div class="swap-card intentional">
+              <div class="swap-card-header">Intentional Design (Outcome-Focused)</div>
+              <div class="swap-card-body">
+                <h3 class="preview-headline">Reconcile B2B invoices in under 90 seconds</h3>
+                <p class="preview-desc"><span class="highlight-brand">AcmeFlow</span> connects directly to your ERP and
+                  automates line-item matching, eliminating manual spreadsheet entry for finance teams.</p>
+              </div>
+              <div class="swap-card-footer">
+                <span class="success-text">✅ Highly specific. Swapping the name wouldn't make sense if the competitor
+                  doesn't do exactly this.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-label">Integration</div>
+        <h2>How the Skill Works</h2>
+        <p class="lede">The skill operates silently inside your AI coding assistant, following a <strong>draft &rarr;
+            check &rarr; discard &rarr; rebuild</strong> cycle.</p>
+        <div class="workflow">
+          <div class="workflow-step active">
+            <div class="workflow-num">1</div>
+            <div class="workflow-label">Draft</div>
+            <div class="workflow-desc">Generate output freely, no self-censoring</div>
+          </div>
+          <div class="workflow-arrow">&rarr;</div>
+          <div class="workflow-step">
+            <div class="workflow-num">2</div>
+            <div class="workflow-label">Check</div>
+            <div class="workflow-desc">Scan against 14 discipline checklists</div>
+          </div>
+          <div class="workflow-arrow">&rarr;</div>
+          <div class="workflow-step flag">
+            <div class="workflow-num">!</div>
+            <div class="workflow-label">Flag</div>
+            <div class="workflow-desc">2+ hits in any category = slop detected</div>
+          </div>
+          <div class="workflow-arrow">&rarr;</div>
+          <div class="workflow-step">
+            <div class="workflow-num">3</div>
+            <div class="workflow-label">Rebuild</div>
+            <div class="workflow-desc">Discard draft, make specific intentional choices</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="container">
@@ -944,12 +1298,24 @@
       { num: 3, title: '"Unlock your [noun]" headlines', desc: 'Headlines that follow the exact template "Unlock your [potential|productivity|growth|success]". Generic by construction.', tag: 'Copy' },
       { num: 4, title: 'Rule-of-three adjective stacks', desc: 'Three adjectives in a row before a noun: "Powerful. Intuitive. Seamless." or "Modern, scalable, secure." Trivially swappable.', tag: 'Copy' },
       { num: 5, title: 'Circular-avatar testimonials with no specific outcome', desc: 'Round photos, glowing quote, person\'s name, "CEO of X". Never any concrete numbers or before/after.', tag: 'Visual' },
-      { num: 6, title: '3-tier pricing with "Most Popular" highlighted', desc: 'The Starter/Pro/Enterprise model with one plan called out as "Most Popular" or "Recommended."', tag: 'UX' },
-      { num: 7, title: 'transition: all 0.3s ease on everything', desc: 'The universal CSS transition. Indicates no thought was given to what should animate or how.', tag: 'Code' },
-      { num: 8, title: 'Inter at 400/600/700 with default letter-spacing', desc: 'Inter is the default LLM font choice. Using it at default weights and tracking signals no typographic intention.', tag: 'Color' },
-      { num: 9, title: '"How It Works" with exactly 3 steps', desc: 'Step 1: Sign up. Step 2: Do the thing. Step 3: Get result. Three steps, always — no variation.', tag: 'UX' },
-      { num: 10, title: 'Missing alt text, no lang, framework-default &lt;title&gt;', desc: 'The HTML equivalent of not checking your work. Shows up when the AI generates markup without review.', tag: 'Code' },
+      { num: 6, title: '3-tier pricing with "Most Popular" highlighted', desc: 'The Starter/Pro/Enterprise model with one plan called out as "Most Popular" or "Recommended" without actual usage data.', tag: 'UX' },
+      { num: 7, title: 'transition: all 0.3s ease on everything', desc: 'The universal CSS transition. Indicates no thought was given to what should animate or how.', tag: 'Code & Infra' },
+      { num: 8, title: 'Inter font 400/600/700 with default letter-spacing', desc: 'Inter is the default LLM font choice. Using it at default weights and tracking signals no typographic intention.', tag: 'Visual' },
+      { num: 9, title: '"How It Works" with exactly 3 generic steps', desc: 'Step 1: Sign up. Step 2: Do the thing. Step 3: Get result. Three steps, always — no variation.', tag: 'UX' },
+      { num: 10, title: 'Missing alt text, no lang, framework-default &lt;title&gt;', desc: 'The HTML equivalent of not checking your work. Shows up when the AI generates markup without review.', tag: 'Code & Infra' },
+      { num: 11, title: '"In today\'s fast-paced digital world..." opener', desc: 'The classic LLM throat-clearing opener. Any sentence that begins by establishing the context of the era is filler.', tag: 'Copy' },
+      { num: 12, title: 'Particle network animation background', desc: 'Small dots connected by faint lines, either static or slowly moving, used as background decoration to imply high technology.', tag: 'Visual' },
+      { num: 13, title: '3-stage pipeline: build → test → deploy', desc: 'A default template applied regardless of whether the project actually has tests, multiple staging targets, or any release process.', tag: 'Code & Infra' },
+      { num: 14, title: 'Dockerfile: FROM node:latest', desc: 'Using "latest" tag breaks reproducibility. Also copying files before running npm install, invalidating caches.', tag: 'Code & Infra' },
+      { num: 15, title: 'README describes project but not how to use it', desc: 'Paragraphs of high-level overview, a badge row, one install command, and zero information on how to configure or run it.', tag: 'Docs' },
+      { num: 16, title: 'Hardcoded region names and instance sizes', desc: 'Hardcoded strings like "us-east-1" or "t3.micro" in Terraform/CloudFormation, making configs impossible to reuse across environments.', tag: 'Code & Infra' },
+      { num: 17, title: 'Empty states saying "No items found"', desc: 'Generates a blank page with no instruction, guidance, or action button on how to create one or proceed.', tag: 'UX' },
+      { num: 18, title: 'Error messages saying "Something went wrong"', desc: 'Vague errors with zero context or actionable troubleshooting advice, indicating failure states were never explicitly mapped.', tag: 'UX' },
+      { num: 19, title: 'Google Fonts loaded for all weights', desc: 'Preloading weights 100 through 900 when only 400 and 700 are used, dragging down page speed.', tag: 'Code & Infra' },
+      { num: 20, title: '"Our Story" page with standard template', desc: 'Founded in [year] -> noticed [problem] -> mission is to [vague change] -> passionate team. Completely interchangeable boilerplate.', tag: 'Docs' }
     ];
+
+    let activeCatalogFilter = 'all';
 
     function renderTells() {
       const list = document.getElementById('tell-list');
@@ -1004,9 +1370,13 @@
 
     function renderTopTells() {
       const grid = document.getElementById('tells-grid');
-      grid.innerHTML = topTells.map(t => `
+      const filtered = activeCatalogFilter === 'all'
+        ? topTells
+        : topTells.filter(t => t.tag === activeCatalogFilter);
+
+      grid.innerHTML = filtered.map(t => `
     <div class="tell-card">
-      <div class="tell-card-num">Tell #${t.num} of 10</div>
+      <div class="tell-card-num">Tell #${t.num}</div>
       <div class="tell-card-title">${t.title}</div>
       <div class="tell-card-desc">${t.desc}</div>
       <span class="tell-card-tag">${t.tag}</span>
@@ -1014,9 +1384,85 @@
   `).join('');
     }
 
+    // Setup interactive scanner tabs
+    document.querySelectorAll('.scanner-tab').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.scanner-tab').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.tell-item').forEach(el => {
+          if (filter === 'all' || el.dataset.cat === filter) {
+            el.style.display = 'flex';
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Setup catalog filter chips
+    document.querySelectorAll('.catalog-filter').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.catalog-filter').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        activeCatalogFilter = this.dataset.filter;
+        renderTopTells();
+      });
+    });
+
+    // Setup Master Swap Test playground
+    const brandInput = document.getElementById('brand-name');
+    const compInput = document.getElementById('competitor-name');
+
+    function updateSwapTest() {
+      const brandVal = brandInput.value.trim() || 'AcmeFlow';
+      const compVal = compInput.value.trim() || 'GlobalTech';
+
+      document.querySelectorAll('.highlight-brand').forEach(el => {
+        el.textContent = brandVal;
+      });
+
+      document.querySelectorAll('.highlight-comp').forEach(el => {
+        el.textContent = compVal;
+      });
+    }
+
+    if (brandInput && compInput) {
+      brandInput.addEventListener('input', updateSwapTest);
+      compInput.addEventListener('input', updateSwapTest);
+      updateSwapTest();
+    }
+
+    // Setup installation command copy button
+    const copyBtn = document.getElementById('btn-copy-command');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        const text = "npx skills add sahilkargutkar/web-ai-slop";
+        navigator.clipboard.writeText(text).then(() => {
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = `Copied! <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px; vertical-align: middle;"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+          copyBtn.style.background = 'var(--green)';
+          copyBtn.style.borderColor = 'var(--green)';
+          setTimeout(() => {
+            copyBtn.innerHTML = originalHTML;
+            copyBtn.style.background = '';
+            copyBtn.style.borderColor = '';
+          }, 2000);
+        });
+      });
+    }
+
     renderTells();
     renderTopTells();
     updateScore();
+
+    // Mobile nav toggle
+    document.querySelector('.nav-toggle')?.addEventListener('click', function () {
+      const links = document.querySelector('.nav-links');
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      links.classList.toggle('open');
+      this.setAttribute('aria-expanded', !expanded);
+    });
   </script>
 </body>
 

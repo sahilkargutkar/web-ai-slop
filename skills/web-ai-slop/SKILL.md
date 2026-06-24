@@ -26,6 +26,7 @@ These are the patterns a designer with 40 years of craft knowledge would immedia
 - **Sticky navigation that appears on every page** regardless of whether the page is a one-scroll landing page, a long-form article, or an app view where navigation competes with content.
 - **Footer with 4–5 column link columns** containing links that nobody using this specific product would realistically navigate to.
 - **Icons for features that don't require icons** — AI models love to put a Lucide or Heroicon next to every feature, even when it doesn't add clarity.DOnt use emoji's for icons in any page , dont use emojis at all in the website, instead use actual icons.You can ask which icons user prefer, and based on user input select them.dont use the default icon themes of shadcn ui, make your own or use a library of icons that user prefers.
+- **Gradient** - for hero or any section gradient is allowed only if the user explicitly asks for it. Dont add gradients just for the sake of it. And if u add it make it subtle and elegant. And **very Important** if u add gradient make it look aesthetic. Dont add gradient to last section, last section should always be solid color.And also dont use the default gradient colors shadcn provides for buttons or links.
 
 
 ### 1b. Decorative motifs
@@ -112,6 +113,7 @@ These are the patterns that a 40-year editorial professional or senior UX writer
 - **"Trusted by [N]+ teams/companies/developers"** with no source, no named company, and no context — used as visual filler, not as evidence.
 - **Bulleted feature lists where every line begins with the same gerund** — "Streamline your workflows. Automate your pipelines. Optimize your delivery." Gerund + possessive noun, repeated for 6–8 bullets.
 - **"Designed with [audience] in mind"** — the passive-voice hedge that avoids making a specific claim.
+- **Missing or placeholder alt text**: Images lack meaningful `alt` attributes, are missing `alt` attributes entirely, or use generic descriptions like "image" or "graphic." This affects accessibility and SEO.
 
 ### 3b. Structural content defaults
 
@@ -132,6 +134,17 @@ These are the patterns that a 40-year editorial professional or senior UX writer
 - **Active voice mimicry without subject clarity** — "Enabling teams to ship faster" has no grammatical subject. Who enables? What ships? Faster than what?
 
 **Instead:** Write one sentence that only makes sense for this specific product — a sentence that a competitor could not copy-paste into their own website without it being obviously wrong. If the company name can be swapped out and the sentence still works, delete it.
+**Common AI-Generated Words & Phrases** AI models are trained to be highly polite and helpful, they often rely on the same predictable vocabulary. Look out for these overused words :
+
+1. **Adjectives** : Intricate, vibrant, crucial, pivotal, paramount, essential.
+2. **Verbs**: Delve, harness, elevate, resonate, enhance, underscore, embark.
+3. **Nouns**: Tapestry, landscape, testament, interplay, offerings.
+4. **Transition words**: Moreover, furthermore, thus, consequently, in conclusion, it is important to remember.
+
+Dont use them in copy writing and try to sound with emotions and connect with the user in a way that they can relate to your product.
+
+**Flawless but flat language** : Perfect grammar but a lack of unique personality, humor, or personal anecdotes.**No messy transitions** : AI text flows "too smoothly" and lacks the natural tangents or uneven sentence lengths typical of human writing.
+**Repetitive structures** : Overusing specific linking words like "firstly," "secondly," and "in conclusion" to structure every paragraph.
 
 ---
 
