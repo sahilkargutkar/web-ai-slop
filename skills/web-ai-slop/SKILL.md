@@ -25,9 +25,10 @@ These are the patterns a designer with 40 years of craft knowledge would immedia
 - **Section → divider → section → divider rhythm with no variation** — every page breathes the same. Real page rhythm varies: compressed detail sections, open breathing sections, dense data sections.
 - **Sticky navigation that appears on every page** regardless of whether the page is a one-scroll landing page, a long-form article, or an app view where navigation competes with content.
 - **Footer with 4–5 column link columns** containing links that nobody using this specific product would realistically navigate to.
-- **Icons for features that don't require icons** — AI models love to put a Lucide or Heroicon next to every feature, even when it doesn't add clarity.DOnt use emoji's for icons in any page , dont use emojis at all in the website, instead use actual icons.You can ask which icons user prefer, and based on user input select them.dont use the default icon themes of shadcn ui, make your own or use a library of icons that user prefers.
-- **Gradient** - for hero or any section gradient is allowed only if the user explicitly asks for it. Dont add gradients just for the sake of it. And if u add it make it subtle and elegant. And **very Important** if u add gradient make it look aesthetic. Dont add gradient to last section, last section should always be solid color.And also dont use the default gradient colors shadcn provides for buttons or links.
-
+- **Icons for features that don't require icons** — AI models love to put a Lucide or Heroicon next to every feature, even when it doesn't add clarity.
+- **Emoji used as icons, or used anywhere in the copy** — no emoji standing in for an icon, and no emoji in headlines, buttons, or body text. Use a real icon.
+- **The default Shadcn icon set, unquestioned** — pick an icon library deliberately, or ask the user which style they prefer and choose based on the answer. Don't ship whatever came bundled with the component library.
+- **Decorative gradients added by default** — gradients are fine if the user explicitly asks for one. If you use one, keep it subtle and make sure it actually fits the palette, never apply it to the last section of a page (end on a solid color), and don't reach for Shadcn's default button/link gradient presets.
 
 ### 1b. Decorative motifs
 
@@ -49,7 +50,6 @@ These are the patterns a designer with 40 years of craft knowledge would immedia
 - **Testimonial carousel with stock-photo circular avatar, first name + last initial, and a generic one-line quote** that contains no specific number, outcome, or named feature.
 - **Pricing section always 3 tiers, always with the middle one highlighted** by a colored border and the label "Most Popular," regardless of whether that framing serves this product.
 
-
 ### 1d. Quick-scan signal table
 
 Open the site and look at it for 10 seconds before doing anything technical. These are the signals visible without inspecting code.
@@ -70,7 +70,6 @@ Open the site and look at it for 10 seconds before doing anything technical. The
 
 **Instead:** Pick ONE real visual device — a specific illustration, a diagram of the actual product's data flow, a screenshot of the real interface — render it with restraint, and give it room. A company that ships serious product puts one precise idea per screen, not a collage of AI-default textures.
 
-
 ---
 
 ## Section 2 — Color & Typography (Web Designer / UI Designer perspective)
@@ -88,6 +87,7 @@ Open the site and look at it for 10 seconds before doing anything technical. The
 
 - **Inter in weights 400, 600, and 700 only**, with no display typeface for headlines, no serif for body contrast, and no consideration of whether Inter is the right choice for this brand.
 - **Letter-spacing untouched at `letter-spacing: 0`** on large display headlines — professional type systems tighten tracking (`letter-spacing: -0.02em` to `-0.05em`) as point size increases. Default tracking on a 72px headline looks like a template.
+- **Tailwind's `tracking-wide`/`tracking-wider`/`tracking-tight` utilities applied reflexively, and uppercase text used as a default emphasis style** — only reach for either when there's a specific typographic reason, and don't change the established case treatment of existing text unless the user asked for it.
 - **No visual type hierarchy beyond size and weight** — body, muted, and faint text all at the same color value, differentiated only by font-size. Real hierarchies use at least three tonal steps.
 - **Line-height not considered per context** — same `line-height: 1.5` on a 12px caption and a 56px headline.
 - **All-caps labels on everything** as a substitute for typographic hierarchy thinking.
@@ -113,7 +113,7 @@ These are the patterns that a 40-year editorial professional or senior UX writer
 - **"Trusted by [N]+ teams/companies/developers"** with no source, no named company, and no context — used as visual filler, not as evidence.
 - **Bulleted feature lists where every line begins with the same gerund** — "Streamline your workflows. Automate your pipelines. Optimize your delivery." Gerund + possessive noun, repeated for 6–8 bullets.
 - **"Designed with [audience] in mind"** — the passive-voice hedge that avoids making a specific claim.
-- **Missing or placeholder alt text**: Images lack meaningful `alt` attributes, are missing `alt` attributes entirely, or use generic descriptions like "image" or "graphic." This affects accessibility and SEO.
+- **Missing or placeholder alt text** — images lack meaningful `alt` attributes, are missing them entirely, or use generic descriptions like "image" or "graphic." This affects accessibility and SEO.
 
 ### 3b. Structural content defaults
 
@@ -133,18 +133,22 @@ These are the patterns that a 40-year editorial professional or senior UX writer
 - **Using "seamless," "intuitive," "powerful," or "robust"** as adjectives without any specific evidence — these words have been used so often that they communicate nothing except that the writer had no more specific thing to say.
 - **Active voice mimicry without subject clarity** — "Enabling teams to ship faster" has no grammatical subject. Who enables? What ships? Faster than what?
 
-**Instead:** Write one sentence that only makes sense for this specific product — a sentence that a competitor could not copy-paste into their own website without it being obviously wrong. If the company name can be swapped out and the sentence still works, delete it.
-**Common AI-Generated Words & Phrases** AI models are trained to be highly polite and helpful, they often rely on the same predictable vocabulary. Look out for these overused words :
+### 3d. Lexical and rhythm tells
 
-1. **Adjectives** : Intricate, vibrant, crucial, pivotal, paramount, essential.
-2. **Verbs**: Delve, harness, elevate, resonate, enhance, underscore, embark.
-3. **Nouns**: Tapestry, landscape, testament, interplay, offerings.
-4. **Transition words**: Moreover, furthermore, thus, consequently, in conclusion, it is important to remember.
+AI models are trained to sound endlessly helpful and polite, which narrows their vocabulary to a predictable set. Cut these on sight:
 
-Dont use them in copy writing and try to sound with emotions and connect with the user in a way that they can relate to your product.
+- **Adjectives:** intricate, vibrant, crucial, pivotal, paramount, essential.
+- **Verbs:** delve, harness, elevate, resonate, enhance, underscore, embark.
+- **Nouns:** tapestry, landscape, testament, interplay, offerings.
+- **Transitions:** moreover, furthermore, thus, consequently, in conclusion, "it's important to remember."
 
-**Flawless but flat language** : Perfect grammar but a lack of unique personality, humor, or personal anecdotes.**No messy transitions** : AI text flows "too smoothly" and lacks the natural tangents or uneven sentence lengths typical of human writing.
-**Repetitive structures** : Overusing specific linking words like "firstly," "secondly," and "in conclusion" to structure every paragraph.
+Beyond vocabulary, watch for:
+
+- **Flawless but flat language** — grammatically perfect, with no personality, humor, or anecdote.
+- **No messy transitions** — real writing has tangents and uneven sentence lengths; AI text flows too smoothly.
+- **Repetitive structures** — "firstly... secondly... in conclusion" imposed on every paragraph regardless of whether the content calls for it.
+
+**Instead:** Write one sentence that only makes sense for this specific product — a sentence a competitor couldn't copy-paste into their own website without it being obviously wrong. If the company name can be swapped out and the sentence still works, delete it. Write with the specific people and stakes behind this product in mind, not in a register that could belong to anyone.
 
 ---
 
@@ -183,9 +187,8 @@ These are the patterns that a 40-year UX researcher or information architect wou
 - **Form inputs without associated `<label>` elements** — placeholder text used as a substitute for a label, which disappears when the user starts typing.
 - **`<div>` and `<span>` used as interactive elements** with click handlers but no `role`, no `tabindex`, and no keyboard event handler.
 - **Heading levels skipped** — jumping from `<h1>` to `<h3>` because the `<h3>` style looked right, breaking document structure for screen readers.
-- **No `skip to main content` link** for keyboard users who would otherwise have to tab through an entire navigation on every page.
+- **No "skip to main content" link** for keyboard users who would otherwise have to tab through an entire navigation on every page.
 - **Animations with no `prefers-reduced-motion` media query** — users with vestibular disorders, epilepsy, or motion sensitivity cannot opt out.
-- **Tailwind css** - dont use tracking in any className with tracking-wider or tracking-tight etc. Do not use uppercase letters in any text.Use only when user specifies so.
 
 **Instead:** Ask what the one thing this specific page needs the visitor to do or believe, and structure every element around that. Remove anything that does not contribute. Real IA is subtraction.
 
@@ -238,13 +241,8 @@ These are the patterns that a 40-year front-end engineer would call out in a cod
 - **No `font-display: swap`** on web fonts — invisible text during font load (FOIT) instead of a flash of system text (FOUT).
 - **Render-blocking CSS** loaded via `<link rel="stylesheet">` for styles that are not used above the fold.
 - **Web fonts loaded for weights and styles never used** — loading all 18 weights of a variable font "just in case."
-- **Testing** - dont add scratch js, ts, or any other files in the code. Make sure the code is clean and well-organized.if added to check files, remove them.
-
 
 **Instead:** Before writing a component or page, name the semantic elements that belong in it, the data flow, the error states, and the loading state. If you cannot name those, the component is not ready to be built.
-
-
-
 
 ---
 
@@ -328,6 +326,7 @@ These are failures that cut across every technical discipline.
 - **Tests that only test the happy path** and are designed to pass, not to catch regressions.
 - **Copy-pasted code across three files** with slight variations instead of an abstracted, parameterized function — three bugs introduced simultaneously when the logic needs to change.
 - **Over-engineered abstractions for a project that is not yet large enough to need them** — microservices for a solo-developer project, a design system for a four-page site, event sourcing for a to-do list.
+- **Scratch files left in the repo** — temporary test scripts, throwaway `.js`/`.ts`/`.py` files used to check something while building, never cleaned up. If you created a file to verify something mid-task, delete it before calling the task done.
 
 ---
 
@@ -358,6 +357,12 @@ If the user says "this still looks AI-generated," "this is generic slop," "this 
 **Do:** Name the specific item from the checklist above that you defaulted to. State it explicitly: "I defaulted to [pattern]. The replacement decision is [specific, justified alternative]." Then rebuild from that replacement decision, not from the previous draft with surface changes applied.
 
 The difference between a 40-year practitioner and a model generating defaults is not technique — it is the willingness to throw away a draft that has no specific reason to exist.
+
+---
+
+## Part Two — Auditing a Site You Didn't Build
+
+Sections 1–10 are for catching yourself before you ship. The three sections below are for the other direction: you're handed a URL and asked whether it looks AI-generated, or asked to clean up a site someone else — possibly another AI — already produced. Same underlying patterns, different vantage point: you're reading instead of writing.
 
 ---
 
@@ -392,7 +397,8 @@ This is the layer pure code-scanning tools can't see, and arguably the most reli
 - **No conversion thinking.** Page structure, user journey, and calls to action feel like an afterthought rather than a designed path.
 - **Positioning vacuum.** The site never clearly states who it's for or why someone should pick it over alternatives — because the model was never given that strategic context to begin with, only a feature list to describe.
 
+---
 
-## Section 14 - Deploying code / Upoading to Git 
+## Section 14 — Repository & Deploy Permissions
 
-- **Dont commit**- Dont use git init or git add or git commit . Also dont add any scratch files to the repo. Make sure the code is clean and well-organized.Let the user do this.  
+- **Don't run `git init`, `git add`, or `git commit` on the user's behalf**, and don't push or deploy anything without being explicitly asked to. Do the work, leave the repository actions to the user.
