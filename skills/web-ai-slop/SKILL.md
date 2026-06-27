@@ -5,6 +5,9 @@ description: "Filters web output against a multi-discipline checklist of AI defa
 
 # Web AI Slop — The Practitioner's Anti-Default Checklist
 
+> [!NOTE]
+> **Core Philosophy (Mantra):** Avoid statistical averages. When generating layouts, styles, or logic, do not default to what is typical or "standard"; make deliberate choices tailored to the specific context, users, and constraints.
+
 A trained filter, not a style guide. This skill exists because language models converge on the same small set of "safe" defaults across every web discipline — not because those defaults are good, but because they are the statistical center of the training data. The job of this skill is to name that center precisely so you can deliberately step away from it.
 
 **Rule of application:** Draft your output first. Then run it against the relevant sections below. If you match **2 or more items in any single section**, you have not made a decision — you have defaulted. Discard the draft and make a specific, justified choice for this product, team, and context.
@@ -49,6 +52,7 @@ These are the patterns a designer with 40 years of craft knowledge would immedia
 - **Every button a pill shape** (`border-radius: 9999px`) regardless of whether the brand calls for it.
 - **Testimonial carousel with stock-photo circular avatar, first name + last initial, and a generic one-line quote** that contains no specific number, outcome, or named feature.
 - **Pricing section always 3 tiers, always with the middle one highlighted** by a colored border and the label "Most Popular," regardless of whether that framing serves this product.
+- **High-contrast glow/accent shadow buttons** — applying a high-contrast gradient, heavy drop-shadow, or glowing brand-color halo to the primary Call to Action (CTA) button by default as a visual hack, without specific visual hierarchy or brand alignment reason.
 
 ### 1d. Quick-scan signal table
 
@@ -114,6 +118,7 @@ These are the patterns that a 40-year editorial professional or senior UX writer
 - **Bulleted feature lists where every line begins with the same gerund** — "Streamline your workflows. Automate your pipelines. Optimize your delivery." Gerund + possessive noun, repeated for 6–8 bullets.
 - **"Designed with [audience] in mind"** — the passive-voice hedge that avoids making a specific claim.
 - **Missing or placeholder alt text** — images lack meaningful `alt` attributes, are missing them entirely, or use generic descriptions like "image" or "graphic." This affects accessibility and SEO.
+- **AI Storytelling Tropes / Narrative Arcs** — using a repetitive, formulaic "Problem-Agitation-Solution" structure (e.g. "Frustrated with manual tasks? It drains time. Here's our solution...") on every landing page section, or presenting every basic feature release as a dramatic "Hero's Journey" of ultimate transformation.
 
 ### 3b. Structural content defaults
 
@@ -189,6 +194,13 @@ These are the patterns that a 40-year UX researcher or information architect wou
 - **Heading levels skipped** — jumping from `<h1>` to `<h3>` because the `<h3>` style looked right, breaking document structure for screen readers.
 - **No "skip to main content" link** for keyboard users who would otherwise have to tab through an entire navigation on every page.
 - **Animations with no `prefers-reduced-motion` media query** — users with vestibular disorders, epilepsy, or motion sensitivity cannot opt out.
+
+### 4d. Mobile & Responsive Layout Slop
+
+- **Uniform Desktop Padding on Mobile** — applying identical vertical padding (e.g. `padding: 80px 0` or `120px 0`) to small viewports, causing content to feel overly sparse and requiring excessive scrolling.
+- **Linear Scaling of Typography** — using standard text resizing or viewport-width units without min/max bounds, making headings microscopic or illegible on small phones.
+- **Linear Scaling of Images** — letting images scale down linearly without cropping or changing layout, rendering fine details invisible on 320px screens.
+- **Overlapping/Clipped Elements** — failing to adjust grid structures (e.g. sticking to 3-column features on mobile), resulting in text overflow, wrapping, or layout clipping.
 
 **Instead:** Ask what the one thing this specific page needs the visitor to do or believe, and structure every element around that. Remove anything that does not contribute. Real IA is subtraction.
 
@@ -327,6 +339,9 @@ These are failures that cut across every technical discipline.
 - **Copy-pasted code across three files** with slight variations instead of an abstracted, parameterized function — three bugs introduced simultaneously when the logic needs to change.
 - **Over-engineered abstractions for a project that is not yet large enough to need them** — microservices for a solo-developer project, a design system for a four-page site, event sourcing for a to-do list.
 - **Scratch files left in the repo** — temporary test scripts, throwaway `.js`/`.ts`/`.py` files used to check something while building, never cleaned up. If you created a file to verify something mid-task, delete it before calling the task done.
+- **Overly Descriptive Comments** — commenting on the obvious code functionality (e.g. `// starts loop` or `// check if id exists`). Code comments must explain the *why*, not the *what*.
+- **Standardized/Generic Variable Names** — variable names that are too theoretically "perfect" or generic across modules (e.g., `const dataList = ...`, `const isLoaded = ...`, `const resultObj = ...` when domain-specific names like `reconSummary` or `hasFetchedProfile` add clarity).
+- **Unused Import & Property Bloat** — importing libraries (e.g. `lodash`, `axios`) or properties that are never used in the file, simply because they were part of the AI's boilerplate template.
 
 ---
 
@@ -402,3 +417,40 @@ This is the layer pure code-scanning tools can't see, and arguably the most reli
 ## Section 14 — Repository & Deploy Permissions
 
 - **Don't run `git init`, `git add`, or `git commit` on the user's behalf**, and don't push or deploy anything without being explicitly asked to. Do the work, leave the repository actions to the user.
+
+---
+
+## Section 15 — Illustrative Failure Cases
+
+### Failure Case 1: Generic Copy & Storytelling (Fails Section 3)
+> **Problem-Agitation-Solution Slop:**
+> "Are you tired of losing hours managing team tasks? It is frustrating to chase deadlines manually. Elevate your operations today! Unlock your potential and supercharge productivity with TaskSync. Fast. Secure. Reliable. Designed with teams in mind."
+> 
+> *Why it fails:* Follows the repetitive pain-agitation formula. Uses cliché verbs ("unlock", "elevate", "supercharge") and the exact "Rule of three" adjective stack.
+
+### Failure Case 2: Code Boilerplate & Obvious Comments (Fails Section 8 & 5c)
+```javascript
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // UNUSED IMPORT
+import _ from 'lodash';    // UNUSED IMPORT
+
+export default function UserList() {
+  // state for users
+  const [dataList, setDataList] = useState([]); // generic name dataList
+
+  useEffect(() => {
+    // fetch user data
+    fetch('/api/users')
+      .then(res => res.json())
+      .then(data => setDataList(data));
+  }, []);
+
+  return (
+    <ul>
+      {/* loop through users */}
+      {dataList.map(item => <li key={item.id}>{item.name}</li>)}
+    </ul>
+  );
+}
+```
+*Why it fails:* Unused imports (`axios`, `lodash`), generic naming (`dataList`), and obvious line-by-line comments (`// state for users`, `// fetch user data`, `/* loop through users */`).
