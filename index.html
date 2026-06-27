@@ -1019,6 +1019,245 @@
         flex-wrap: wrap
       }
     }
+
+    /* AEO Section Styles */
+    .aeo-auditor-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 24px;
+    }
+    .aeo-auditor-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: .75rem;
+      color: var(--text2);
+    }
+    .aeo-auditor-body {
+      padding: 24px;
+    }
+    .aeo-presets {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .aeo-preset-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .aeo-preset-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-size: 0.8125rem;
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .aeo-preset-btn:hover {
+      border-color: var(--border2);
+      color: var(--text);
+    }
+    .aeo-workspace {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media(max-width:768px) {
+      .aeo-workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+    .aeo-input-area textarea {
+      width: 100%;
+      height: 200px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.875rem;
+      padding: 14px;
+      border-radius: var(--radius);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .aeo-input-area textarea:focus {
+      border-color: var(--amber);
+    }
+    .aeo-results-area {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .aeo-score-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--surface2);
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .aeo-score-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 4px solid var(--border2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .aeo-score-circle.high {
+      border-color: var(--green);
+      color: var(--green);
+    }
+    .aeo-score-circle.med {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+    .aeo-score-circle.low {
+      border-color: var(--red);
+      color: var(--red);
+    }
+    #aeo-score-val {
+      font-size: 1.75rem;
+      line-height: 1.1;
+      font-family: var(--mono);
+    }
+    .aeo-score-sub {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text3);
+    }
+    .aeo-verdict-box h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .aeo-verdict-box p {
+      font-size: 0.8125rem;
+      color: var(--text2);
+    }
+    .aeo-audit-details {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      flex-grow: 1;
+    }
+    .aeo-audit-details h4 {
+      font-size: 0.875rem;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .aeo-report-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .aeo-report-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+    }
+    .aeo-report-icon {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-block;
+      width: 16px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .aeo-report-text {
+      color: var(--text2);
+    }
+    .aeo-report-item.pass .aeo-report-icon {
+      color: var(--green);
+    }
+    .aeo-report-item.fail .aeo-report-icon {
+      color: var(--red);
+    }
+    .aeo-report-item.warning .aeo-report-icon {
+      color: var(--amber);
+    }
+    .aeo-preview-box {
+      margin-top: 20px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .aeo-preview-box h4 {
+      font-size: 0.875rem;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .aeo-highlighted-content {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text2);
+    }
+    .aeo-flagged-word {
+      background: rgba(239, 68, 68, 0.15);
+      border-bottom: 1.5px dashed var(--red);
+      color: #ff8b8b;
+      padding: 0 2px;
+      border-radius: 2px;
+      cursor: help;
+      position: relative;
+    }
+    .aeo-flagged-word::after {
+      content: attr(data-reason);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 10;
+      border: 1px solid var(--border2);
+      pointer-events: none;
+    }
+    .aeo-flagged-word:hover::after {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -1028,13 +1267,14 @@
 
   <nav>
     <div class="container">
-      <div class="logo">web-ai-<span>slop</span></div>
+      <div class="logo">web-ai-<span>toolkit</span></div>
       <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       <ul class="nav-links">
         <li><a href="#scanner">Scanner</a></li>
         <li><a href="#tells">Tells Catalog</a></li>
         <li><a href="#compare">Compare</a></li>
         <li><a href="#swap-test">Swap Test</a></li>
+        <li><a href="#aeo-writer">AEO/GEO Writer</a></li>
         <li><a href="#workflow">Workflow</a></li>
         <li><a href="https://github.com/sahilkargutkar/web-ai-slop" target="_blank">GitHub</a></li>
       </ul>
@@ -1044,14 +1284,12 @@
   <main id="main-content">
     <header class="hero">
       <div class="container">
-        <div class="hero-badge">v1.0.0 &middot; Agent Skill</div>
-        <h1>Detect &amp; Eliminate<br><span class="ai-gen">AI-Generated</span> <span class="slop-word">Slop</span></h1>
-        <p class="lede">An agent skill that identifies generic AI patterns before they reach production — from visual
-          clichés and copywriting tropes to code smells and predictable UX decisions. Works alongside any AI coding
-          assistant to help teams ship work that feels intentional, original, and human-crafted.</p>
+        <div class="hero-badge">v1.1.0 &middot; Web AI Toolkit</div>
+        <h1>Web AI Developer Toolkit</h1>
+        <p class="lede">A suite of agent skills that catches generic AI slop before it ships, and optimizes web content to be cited by AI search engines. Build original interfaces and structure citable copy with Cursor, Claude Code, and Windsurf.</p>
         <div class="hero-actions">
           <button class="btn btn-primary" id="btn-copy-command" aria-label="Copy installation command">
-            npx skills add sahilkargutkar/web-ai-slop
+            npx skills add sahilkargutkar/web-ai-slop --all
             <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               style="margin-left: 8px; vertical-align: middle;">
@@ -1059,20 +1297,20 @@
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
           </button>
-          <span class="btn">Read the docs &rarr;</span>
+          <span class="btn" style="cursor: pointer;" onclick="window.open('https://github.com/sahilkargutkar/web-ai-slop', '_blank')">View on GitHub &rarr;</span>
         </div>
         <div class="stats">
           <div class="stat">
-            <div class="stat-num">14</div>
-            <div class="stat-label">Disciplines Checked</div>
+            <div class="stat-num">2</div>
+            <div class="stat-label">Active Skills</div>
           </div>
           <div class="stat">
             <div class="stat-num">50+</div>
-            <div class="stat-label">Patterns Flagged</div>
+            <div class="stat-label">Anti-Slop Checks</div>
           </div>
           <div class="stat">
-            <div class="stat-num">2</div>
-            <div class="stat-label">Hits = Discard &amp; Rebuild</div>
+            <div class="stat-num">100%</div>
+            <div class="stat-label">AEO/GEO Citability</div>
           </div>
         </div>
       </div>
@@ -1224,6 +1462,57 @@
                 <span class="success-text">✅ Highly specific. Swapping the name wouldn't make sense if the competitor
                   doesn't do exactly this.</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="aeo-writer">
+      <div class="container">
+        <div class="section-label">AEO/GEO Copywriting</div>
+        <h2>AEO Copy Auditor &amp; Grader</h2>
+        <p class="lede">Optimize your copy to be cited by AI search engines like ChatGPT, Perplexity, Gemini, and Google AI Overviews. Paste your copy below to analyze its AEO score and verify authority cues, hedging, and metrics.</p>
+
+        <div class="aeo-auditor-box">
+          <div class="aeo-auditor-header">
+            <span class="scanner-dot g"></span>
+            <span class="scanner-dot g"></span>
+            <span class="scanner-dot g"></span>
+            grade: aeo-auditor.js
+          </div>
+          <div class="aeo-auditor-body">
+            <div class="aeo-presets">
+              <span class="aeo-preset-label">Load Example:</span>
+              <button class="aeo-preset-btn" id="preset-slop">Vague AI SaaS Copy (Low AEO)</button>
+              <button class="aeo-preset-btn" id="preset-aeo">Citable Fact Copy (High AEO)</button>
+            </div>
+            <div class="aeo-workspace">
+              <div class="aeo-input-area">
+                <textarea id="aeo-input-text" placeholder="Paste your website or document copy here to analyze..." aria-label="Copy text to analyze"></textarea>
+                <button class="btn btn-primary" id="btn-audit-aeo" style="width:100%; justify-content:center; margin-top:12px; cursor: pointer;">Run AEO Audit</button>
+              </div>
+              <div class="aeo-results-area" id="aeo-results" style="display:none;">
+                <div class="aeo-score-card">
+                  <div class="aeo-score-circle" id="aeo-score-circle">
+                    <span id="aeo-score-val">0</span>
+                    <span class="aeo-score-sub">AEO Score</span>
+                  </div>
+                  <div class="aeo-verdict-box">
+                    <h3 id="aeo-verdict-title">ANALYZING...</h3>
+                    <p id="aeo-verdict-desc">Review details below to make this citable by AI engines.</p>
+                  </div>
+                </div>
+                
+                <div class="aeo-audit-details">
+                  <h4>Analysis Report</h4>
+                  <ul class="aeo-report-list" id="aeo-report-list"></ul>
+                </div>
+              </div>
+            </div>
+            <div id="aeo-markup-preview" class="aeo-preview-box" style="display:none; margin-top: 24px;">
+              <h4>Highlighted Issues &amp; Terms</h4>
+              <div id="aeo-highlighted-text" class="aeo-highlighted-content"></div>
             </div>
           </div>
         </div>
@@ -1437,7 +1726,7 @@
     const copyBtn = document.getElementById('btn-copy-command');
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
-        const text = "npx skills add sahilkargutkar/web-ai-slop";
+        const text = "npx skills add sahilkargutkar/web-ai-slop --all";
         navigator.clipboard.writeText(text).then(() => {
           const originalHTML = copyBtn.innerHTML;
           copyBtn.innerHTML = `Copied! <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px; vertical-align: middle;"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
@@ -1450,6 +1739,165 @@
           }, 2000);
         });
       });
+    }
+
+    // AEO/GEO Copy Auditor Logic
+    const aeoInput = document.getElementById('aeo-input-text');
+    const aeoBtn = document.getElementById('btn-audit-aeo');
+    const aeoResults = document.getElementById('aeo-results');
+    const aeoScoreVal = document.getElementById('aeo-score-val');
+    const aeoScoreCircle = document.getElementById('aeo-score-circle');
+    const aeoVerdictTitle = document.getElementById('aeo-verdict-title');
+    const aeoVerdictDesc = document.getElementById('aeo-verdict-desc');
+    const aeoReportList = document.getElementById('aeo-report-list');
+    const aeoMarkupBox = document.getElementById('aeo-markup-preview');
+    const aeoHighlightedText = document.getElementById('aeo-highlighted-text');
+
+    const presetSlop = document.getElementById('preset-slop');
+    const presetAeo = document.getElementById('preset-aeo');
+
+    const slopExampleText = "In today's fast-paced digital world, we believe standardizing procedures is key. Our platform is designed to help teams leverage advanced functionality to streamline operations, unlock potential, and elevate productivity. We think you will potentially feel a robust and seamless improvement in your daily workflows.";
+    const aeoExampleText = "AcmeCorp standardizes operations by integrating with existing ERPs. According to our 2026 platform audit, integrating the system reduces manual data entry by 73% for finance teams within 30 days. Page speed optimization directly reduces transaction completion rates, with a 42% decrease in page load times based on internal metrics.";
+
+    if (presetSlop && presetAeo && aeoInput) {
+      presetSlop.addEventListener('click', () => {
+        aeoInput.value = slopExampleText;
+        runAeoAudit();
+      });
+      presetAeo.addEventListener('click', () => {
+        aeoInput.value = aeoExampleText;
+        runAeoAudit();
+      });
+    }
+
+    if (aeoBtn) {
+      aeoBtn.addEventListener('click', runAeoAudit);
+    }
+
+    function runAeoAudit() {
+      const text = aeoInput.value.trim();
+      if (!text) {
+        aeoResults.style.display = 'none';
+        aeoMarkupBox.style.display = 'none';
+        return;
+      }
+
+      const hedgingWords = ["believe", "opinion", "think", "probably", "potentially", "likely", "feel", "estimate"];
+      const throatClearing = ["in today's", "digital age", "ever-changing world", "rise of", "important to remember", "first and foremost", "delve", "delving"];
+      const cliches = ["unlock", "supercharge", "elevate", "empower", "seamless", "intuitive", "robust", "revolutionary", "tapestry", "harness", "landscape", "pivotal", "paramount"];
+
+      let score = 100;
+      const reports = [];
+      let highlighted = text;
+
+      // Escape HTML to prevent XSS in preview
+      const div = document.createElement('div');
+      div.innerText = highlighted;
+      highlighted = div.innerHTML;
+
+      // 1. Check Hedging
+      let hedgeCount = 0;
+      hedgingWords.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'gi');
+        const matches = text.match(regex);
+        if (matches) {
+          hedgeCount += matches.length;
+          score -= matches.length * 6;
+          highlighted = highlighted.replace(regex, (m) => `<span class="aeo-flagged-word" data-reason="Hedging: Models favor absolute, declarative statements.">${m}</span>`);
+        }
+      });
+      if (hedgeCount > 0) {
+        reports.push({ status: 'fail', text: `Found ${hedgeCount} hedging terms. AI search engines ignore tentative language like 'we believe' or 'probably'.` });
+      } else {
+        reports.push({ status: 'pass', text: 'Declarative tone. Excellent, no hedging language detected.' });
+      }
+
+      // 2. Check Throat-Clearing Openers
+      let openerCount = 0;
+      throatClearing.forEach(phrase => {
+        const regex = new RegExp(`\\b${phrase}\\b`, 'gi');
+        const matches = text.match(regex);
+        if (matches) {
+          openerCount += matches.length;
+          score -= matches.length * 8;
+          highlighted = highlighted.replace(regex, (m) => `<span class="aeo-flagged-word" data-reason="Filler: Vague industry generalizations are skipped by extraction bots.">${m}</span>`);
+        }
+      });
+      if (openerCount > 0) {
+        reports.push({ status: 'fail', text: `Found ${openerCount} filler/throat-clearing phrases. AI search engines retrieve isolated, context-dense claims, not generalizations.` });
+      } else {
+        reports.push({ status: 'pass', text: 'No vague throat-clearing fillers detected.' });
+      }
+
+      // 3. Check Vague Buzzwords
+      let buzzCount = 0;
+      cliches.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'gi');
+        const matches = text.match(regex);
+        if (matches) {
+          buzzCount += matches.length;
+          score -= matches.length * 4;
+          highlighted = highlighted.replace(regex, (m) => `<span class="aeo-flagged-word" data-reason="Buzzword: Vague marketing adjectives reduce confidence levels.">${m}</span>`);
+        }
+      });
+      if (buzzCount > 0) {
+        reports.push({ status: 'fail', text: `Found ${buzzCount} generic marketing buzzwords. AI search engines strip out adjectives in favor of concrete details.` });
+      } else {
+        reports.push({ status: 'pass', text: 'No vague marketing buzzwords detected.' });
+      }
+
+      // 4. Check for Numbers/Metrics (AI models love numbers)
+      const hasNumber = /\d+/.test(text);
+      if (hasNumber) {
+        score += 10;
+        reports.push({ status: 'pass', text: 'Contains specific numbers or metrics. Numbers survive extraction and are highly cited.' });
+      } else {
+        score -= 20;
+        reports.push({ status: 'fail', text: 'No numbers or metrics detected. AI search engines heavily favor statistics over qualitative descriptions.' });
+      }
+
+      // 5. Check for Attribution Cues (According to, study, audit, etc.)
+      const attributionRegex = /\b(according to|study|audit|survey|report|data|source|found that|shows that)\b/gi;
+      const hasAttribution = attributionRegex.test(text);
+      if (hasAttribution) {
+        score += 10;
+        reports.push({ status: 'pass', text: 'Includes verifiable source/attribution signals. Models prioritize checkable claims.' });
+      } else {
+        score -= 15;
+        reports.push({ status: 'warning', text: 'No clear attribution or source signals. Cite studies, surveys, or audits to establish authority.' });
+      }
+
+      // Ensure score is within 0-100
+      score = Math.max(0, Math.min(100, score));
+
+      // Update UI
+      aeoScoreVal.textContent = score;
+      aeoScoreCircle.className = 'aeo-score-circle ' + (score >= 80 ? 'high' : score >= 50 ? 'med' : 'low');
+
+      if (score >= 80) {
+        aeoVerdictTitle.textContent = 'HIGH CITABILITY';
+        aeoVerdictTitle.style.color = 'var(--green)';
+        aeoVerdictDesc.textContent = 'This copy is declarative, statistics-backed, and optimized for AI retrieval.';
+      } else if (score >= 50) {
+        aeoVerdictTitle.textContent = 'MODERATE CITABILITY';
+        aeoVerdictTitle.style.color = 'var(--amber)';
+        aeoVerdictDesc.textContent = 'A few improvements will significantly increase the likelihood of AI engine citation.';
+      } else {
+        aeoVerdictTitle.textContent = 'LOW CITABILITY (SLOP)';
+        aeoVerdictTitle.style.color = 'var(--red)';
+        aeoVerdictDesc.textContent = 'This text contains excessive hedging and vague buzzwords. AI search bots will likely skip it.';
+      }
+
+      aeoReportList.innerHTML = reports.map(r => `
+        <li class="aeo-report-item ${r.status}">
+          <span class="aeo-report-icon">${r.status === 'pass' ? '✓' : r.status === 'fail' ? '✗' : '⚠'}</span>
+          <span class="aeo-report-text">${r.text}</span>
+        </li>
+      `).join('');
+
+      aeoHighlightedText.innerHTML = highlighted;
+      aeoResults.style.display = 'flex';
+      aeoMarkupBox.style.display = 'block';
     }
 
     renderTells();

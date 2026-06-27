@@ -1,52 +1,81 @@
-# Web AI Slop
+# Web AI Developer Toolkit
 
 [![skills.sh](https://skills.sh/b/sahilkargutkar/web-ai-slop)](https://skills.sh/sahilkargutkar/web-ai-slop)
 
-An Agent Skill to filter out generic AI-generated design patterns, visual clichés, copywriting tropes, and code tells before shipping. 
+A suite of Agent Skills designed to improve web development and copywriting when working with AI coding assistants (like Cursor, Claude Code, and Windsurf). 
 
-This skill acts as a deliberate filter. Rather than enforcing a single visual style, it identifies the statistical "safe" averages that large language models default to when generating websites, landing pages, marketing copy, or application interfaces, prompting the agent to step away from them and make intentional design choices.
+This toolkit contains two complementary skills:
+1. **`web-ai-slop` (The Anti-Default Filter)**: Catch and eliminate generic AI design patterns, visual clichés, copywriting tropes, and code tells before shipping.
+2. **`aeo-geo-writing` (The AI Citation Structurer)**: Optimize and format web copy to be retrieved, cited, and attributed by generative search engines (ChatGPT, Perplexity, Gemini, Google AI Overviews, and Claude).
 
 ---
 
 ## Installation
 
-Install this skill into your AI agent workspace (e.g., Claude Code, Cursor, Windsurf) using the `skills` CLI:
+Install these skills into your AI agent workspace using the `skills` CLI:
 
+### Install Both Skills (Recommended)
 ```bash
-npx skills add sahilkargutkar/web-ai-slop
+npx skills add sahilkargutkar/web-ai-slop --all
 ```
 
-To run or preview the skill locally without installing:
-
+### Install a Specific Skill
+To add only the Anti-Default Filter:
 ```bash
-npx skills use ./@web-ai-slop
+npx skills add sahilkargutkar/web-ai-slop --skill web-ai-slop
+```
+
+To add only the AI Citation Structurer:
+```bash
+npx skills add sahilkargutkar/web-ai-slop --skill aeo-geo-writing
+```
+
+To preview either skill locally without installing:
+```bash
+npx skills use ./@web-ai-slop --skill web-ai-slop
+# or
+npx skills use ./@web-ai-slop --skill aeo-geo-writing
 ```
 
 ---
 
-## How It Works
+## The Skills
 
-Before your AI agent generates a layout, designs a component, or drafts copy, it runs its plan against the check categories. If the proposed output matches **2 or more** items in any category, it is flagged as a default average (slop). The agent is instructed to discard the draft and make a specific, localized design decision.
+### 1. Web AI Slop (`skills/web-ai-slop`)
 
-### Categories Tracked
+Large language models converge on the same "safe" statistical defaults when generating websites. This skill acts as a gatekeeper, prompting your agent to discard generic drafts and make intentional design decisions.
 
-1. **Visual Clichés**: Aurora/gradient background blobs, floating dot/particle networks, bento grids of Lucide icons, glassmorphism cards with white borders, glowing brand shadows, and dashboard widget wallpapers.
-2. **Color & Type Defaults**: Default purple-to-blue palettes, unadjusted letter-spacing on display headlines, absence of visual type hierarchy, and lack of display face considerations.
-3. **Copywriting Clichés**: Vague SaaS verbs ("unlock," "elevate," "supercharge"), rule-of-three adjective stacks ("Simple. Powerful. Secure."), throat-clearing openings, and em-dash-heavy declarations.
-4. **Structural/UX Defaults**: Rigid, formulaic section sequences (Hero → Logos → Bento Features → Testimonial Carousel → 3-Tier Pricing → FAQ → CTA → Footer), default 3-tier pricing highlighting the middle card without product justification, and stock testimonials.
-5. **Code tells**: Unremoved lorem ipsum, placeholder image services (e.g. `placeholder.com`), comment scaffoldings, and single-easing transitions (`all 0.3s ease`) applied to all elements.
+*   **Visual Clichés**: Glowing gradient blobs, particle networks, glassmorphism cards, excessive border-radius, pill CTAs, bento grids, and Shadcn default styles.
+*   **Color & Type Defaults**: Standard purple-to-blue palettes, unadjusted letter-spacing on display headings, and default Inter font stacks.
+*   **Copywriting Clichés**: Vague SaaS empowerment verbs (*supercharge*, *empower*, *elevate*, *unlock*), rule-of-three adjective stacks (*Fast. Secure. Reliable.*), and throat-clearing openings.
+*   **Dev & UX Tells**: Monolithic section flows, placeholder image services, 3-tier pricing sections with fake recommended highlights, and `transition: all 0.3s ease` on everything.
+
+*How it works*: When the agent runs a draft against the checklist and finds **2 or more matches** in any category, it flags it as slop. The agent is forced to discard the draft and write a unique solution.
+
+### 2. AEO/GEO Copywriting (`skills/aeo-geo-writing`)
+
+AI search engines (RAG) do not read websites like humans or index pages like traditional SEO. They retrieve standalone text chunks and analyze them for authority, freshness, and attribution. This skill optimizes your content to be cited by name by LLM systems.
+
+*   **Answer Capsules**: 40–60 word declarative summaries directly beneath H2 headings, containing no preamble or fluff.
+*   **Authority & Citability**: Eliminates hedging (*we believe*, *probably*), replaces adjectives with checkable numbers/metrics, and names reliable sources directly.
+*   **Extraction Semantics**: Uses HTML `<table>` elements for comparisons, embeds `FAQPage` schema on interactive questions, and places an `llms.txt` file at the domain root.
+*   **Platform Tuning**: Tailors copy structure for the specific biases of ChatGPT (verbatim definitions), Perplexity (freshness/data), Google AI Overviews (rich schema), and Claude (reasoning depth).
 
 ---
 
-## Detection Guide
+## Detection & Auditing
 
-Need to audit whether an existing site was AI-generated? See **[docs/detecting-ai-slop.md](docs/detecting-ai-slop.md)** — a comprehensive checklist for designers, developers, UX researchers, and DevOps engineers to identify AI-generated web output by visual, copy, code, and infrastructure tells. Includes a scoring system and a "Top 10 highest-confidence tells" quick reference.
+*   Want to audit an existing website to see if it was built by AI? Check out **[docs/detecting-ai-slop.md](docs/detecting-ai-slop.md)** — a comprehensive inspection guide for visual, copywriting, UX, code, and DevOps tells, including a scoring rubric.
+*   Try the interactive web scanner and AEO copy grader online at [https://sahilkargutkar.github.io/web-ai-slop/](https://sahilkargutkar.github.io/web-ai-slop/).
 
 ---
 
 ## Contributing
 
-If you find a new pattern that AI models constantly default to when generating web applications, open a Pull Request updating `skills/web-ai-slop/SKILL.md` or adding a new pattern to `docs/detecting-ai-slop.md`.
+If you spot new AI default patterns or discover better generative citation techniques, please open a Pull Request!
+- Update `skills/web-ai-slop/SKILL.md` to add new anti-slop checks.
+- Update `skills/aeo-geo-writing/SKILL.md` to improve generative search guidelines.
+- Modify `docs/detecting-ai-slop.md` to update the website inspection guide.
 
 ## License
 
